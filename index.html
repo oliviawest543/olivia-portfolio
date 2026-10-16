@@ -3,375 +3,309 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olivia West | Content Creator Portfolio</title>
+<title>Olivia West | Fashion Content Creator</title>
+<meta name="description" content="Olivia West — NYC fashion content creator. TikTok storytelling, trend forecasting and social-first content for fashion brands.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #FBF7F2;
-    --card: #FFFFFF;
-    --ink: #2B2622;
-    --ink-soft: #6B6259;
-    --blush: #E8B4A8;
-    --blush-deep: #C97C6C;
-    --line: #E9E1D8;
-    --accent: #A8785F;
+    --black: #0a0a0a;
+    --ink: #141414;
+    --ivory: #f5f0e8;
+    --muted: #a9a49b;
+    --champagne: #cdb98a;
+    --line: rgba(245, 240, 232, 0.16);
+    --serif: "Bodoni Moda", "Didot", "Times New Roman", serif;
+    --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    margin: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'Inter', -apple-system, sans-serif;
-    line-height: 1.55;
+    background: var(--black);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Announcement bar */
+  .ticker {
+    background: var(--ivory);
+    color: var(--black);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 9px 0;
+  }
+  .ticker-track { display: inline-block; animation: scroll 38s linear infinite; }
+  .ticker span { padding: 0 28px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* Nav */
+  nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 22px 40px;
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(8px);
+  }
+  .nav-links { display: flex; gap: 28px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 400; }
+  .nav-links.right { justify-content: flex-end; }
+  .nav-links a { opacity: 0.8; transition: opacity .2s; }
+  .nav-links a:hover { opacity: 1; }
+  .wordmark { font-family: var(--serif); font-size: 26px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 400; padding-left: 0.32em; }
 
   /* Hero */
-  header.hero {
-    padding: 72px 0 48px;
+  .hero {
+    position: relative;
     text-align: center;
-    border-bottom: 1px solid var(--line);
-  }
-  .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 46px;
-    font-weight: 600;
-    margin: 0 0 10px;
-    color: var(--ink);
-  }
-  .tagline {
-    font-size: 17px;
-    color: var(--ink-soft);
-    max-width: 560px;
-    margin: 0 auto 26px;
-  }
-  .handle-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 34px;
-  }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .pill svg { width: 14px; height: 14px; }
-
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    flex-wrap: wrap;
-  }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    font-weight: 600;
-    color: var(--blush-deep);
-  }
-  .stat-label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    margin-top: 2px;
-  }
-
-  section { padding: 56px 0; }
-  section.alt { }
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 600;
-    margin: 0 0 8px;
-  }
-  .section-intro {
-    color: var(--ink-soft);
-    font-size: 15px;
-    max-width: 620px;
-    margin: 0 0 34px;
-  }
-
-  /* Featured content grid */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
-  }
-  @media (max-width: 800px) {
-    .grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-  }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 16px;
+    padding: 120px 24px 110px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(205,185,138,0.16), transparent 32%),
+      radial-gradient(circle at 82% 70%, rgba(205,185,138,0.12), transparent 34%),
+      var(--black);
   }
-  .embed-holder {
-    background: #111;
-    display: flex;
-    justify-content: center;
-    min-height: 580px;
+  .sparkle {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 22%, #fff, transparent),
+      radial-gradient(1px 1px at 27% 68%, #f3e3b5, transparent),
+      radial-gradient(1.6px 1.6px at 41% 14%, #fff, transparent),
+      radial-gradient(1px 1px at 58% 82%, #f3e3b5, transparent),
+      radial-gradient(1.3px 1.3px at 73% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 88% 58%, #f3e3b5, transparent),
+      radial-gradient(1.2px 1.2px at 94% 12%, #fff, transparent),
+      radial-gradient(1px 1px at 6% 86%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 66% 50%, #f3e3b5, transparent),
+      radial-gradient(1px 1px at 34% 40%, #fff, transparent);
   }
-  .embed-holder blockquote { margin: 0 !important; }
-  .card-body { padding: 18px 20px 22px; }
-  .card-stats {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
+  .eyebrow { font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--champagne); font-weight: 400; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(48px, 9vw, 124px);
+    line-height: 0.98; letter-spacing: -0.01em;
+    margin: 26px 0 30px;
   }
-  .card-stat {
-    font-size: 13px;
-    color: var(--ink-soft);
+  .hero h1 em { font-style: italic; color: var(--champagne); }
+  .hero p { max-width: 560px; margin: 0 auto; color: var(--muted); font-size: 17px; }
+  .btn-row { display: flex; gap: 14px; justify-content: center; margin-top: 44px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 15px 34px;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;
+    border: 1px solid var(--ivory); transition: background .2s, color .2s;
   }
-  .card-stat b { color: var(--ink); font-weight: 600; }
-  .card-note {
-    font-size: 14px;
-    color: var(--ink);
-    line-height: 1.55;
-  }
-  .card-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--blush-deep);
-    background: #FBEAE4;
-    padding: 4px 10px;
-    border-radius: 999px;
-    margin-bottom: 10px;
-  }
+  .btn.solid { background: var(--ivory); color: var(--black); }
+  .btn.solid:hover { background: var(--champagne); border-color: var(--champagne); }
+  .btn.ghost:hover { background: var(--ivory); color: var(--black); }
 
-  /* Partnerships */
-  .partner-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-  .partner-chip {
-    background: var(--card);
-    border: 1px solid var(--line);
-    padding: 14px 22px;
-    border-radius: 12px;
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--ink);
-  }
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat { text-align: center; padding: 38px 16px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-family: var(--serif); font-size: clamp(34px, 4.6vw, 52px); line-height: 1; }
+  .stat .label { margin-top: 12px; font-size: 10.5px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
 
-  /* Strengths */
-  .strength-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  /* Sections */
+  section { padding: 110px 40px; max-width: 1240px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 64px; }
+  .section-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5vw, 60px); line-height: 1.05; margin-top: 16px; }
+  .section-head h2 em { font-style: italic; }
+  .section-head p { color: var(--muted); max-width: 540px; margin: 18px auto 0; }
+
+  /* Work grid */
+  .work { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .card { display: flex; flex-direction: column; }
+  .frame {
+    position: relative; aspect-ratio: 9 / 16; background: var(--ink);
+    border: 1px solid var(--line); overflow: hidden;
   }
-  @media (max-width: 700px) { .strength-grid { grid-template-columns: 1fr; } }
-  .strength {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px 22px;
+  .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .card .tag { margin-top: 22px; font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--champagne); }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 8px 0 10px; line-height: 1.15; }
+  .metrics { display: flex; gap: 4px 12px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+  .metrics b { font-weight: 500; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  /* Brands */
+  .brands-band { background: var(--ivory); color: var(--black); text-align: center; padding: 90px 24px; }
+  .brands-band .eyebrow { color: #7d6a3e; }
+  .brand-list {
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+    gap: 14px 34px; margin: 34px auto 30px; max-width: 1000px;
+    font-family: var(--serif); font-size: clamp(26px, 3.6vw, 44px); text-transform: uppercase; letter-spacing: 0.08em;
   }
-  .strength h3 {
-    font-size: 15px;
-    margin: 0 0 6px;
-    font-weight: 600;
+  .brand-list .dot { font-size: 0.45em; color: #b59c5f; }
+  .brands-band p { max-width: 560px; margin: 0 auto; color: #4a463f; }
+  .brands-band p b { font-weight: 500; color: var(--black); }
+
+  /* What I bring */
+  .bring { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+  .bring-item { padding: 44px 40px 44px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 70px 1fr; gap: 10px; }
+  .bring-item:nth-child(even) { padding-left: 40px; padding-right: 0; border-left: 1px solid var(--line); }
+  .bring-item .n { font-family: var(--serif); font-style: italic; color: var(--champagne); font-size: 22px; }
+  .bring-item h3 { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+  .bring-item p { color: var(--muted); font-size: 15.5px; }
+
+  /* Contact */
+  .contact {
+    text-align: center; padding: 120px 24px; border-top: 1px solid var(--line);
+    background: radial-gradient(circle at 50% 0%, rgba(205,185,138,0.14), transparent 55%), var(--black);
   }
-  .strength p {
-    font-size: 13.5px;
-    color: var(--ink-soft);
-    margin: 0;
-  }
+  .contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7vw, 92px); line-height: 1; margin: 20px 0 22px; }
+  .contact h2 em { font-style: italic; color: var(--champagne); }
+  .contact .email { font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); border-bottom: 1px solid var(--champagne); padding-bottom: 4px; }
 
   footer {
-    padding: 48px 0 64px;
-    text-align: center;
-    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    padding: 26px 40px; border-top: 1px solid var(--line);
+    font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted);
   }
-  footer .contact {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-    font-size: 14px;
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .work { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   }
-  footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
-  footer .name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 600;
+  @media (max-width: 640px) {
+    nav { grid-template-columns: 1fr; padding: 16px; gap: 10px; justify-items: center; }
+    .nav-links.left { display: none; }
+    .nav-links.right { justify-content: center; gap: 22px; }
+    .wordmark { font-size: 21px; }
+    section { padding: 80px 16px; }
+    .hero { padding: 84px 16px 80px; }
+    .work { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .bring { grid-template-columns: 1fr; }
+    .bring-item, .bring-item:nth-child(even) { padding: 34px 0; border-left: none; grid-template-columns: 50px 1fr; }
+    footer { padding: 22px 16px; justify-content: center; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Content Creator Portfolio</div>
-    <h1>Olivia West</h1>
-    <p class="tagline">Fashion & lifestyle content creator specializing in platform-native TikTok storytelling, trend forecasting, and content built to convert.</p>
-    <div class="handle-row">
-      <a class="pill" href="https://www.tiktok.com/@oliviawest111" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
-        @oliviawest111 on TikTok
-      </a>
-    </div>
-    <div class="stats">
-      <div>
-        <div class="stat-num">26.9K</div>
-        <div class="stat-label">TikTok Followers</div>
-      </div>
-      <div>
-        <div class="stat-num">729.6K</div>
-        <div class="stat-label">Total Likes</div>
-      </div>
-      <div>
-        <div class="stat-num">4</div>
-        <div class="stat-label">DTC Brand Partnerships</div>
-      </div>
-    </div>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Fashion Content Creator</span><span>✦</span><span>New York City</span><span>✦</span><span>1.4M+ TikTok Views</span><span>✦</span><span>Open to Social &amp; Creative Roles</span><span>✦</span>
+    <span>Fashion Content Creator</span><span>✦</span><span>New York City</span><span>✦</span><span>1.4M+ TikTok Views</span><span>✦</span><span>Open to Social &amp; Creative Roles</span><span>✦</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-links left"><a href="#work">Work</a><a href="#brands">Brands</a></div>
+  <a href="#top" class="wordmark">Olivia West</a>
+  <div class="nav-links right"><a href="#work" class="m-only">Work</a><a href="https://www.tiktok.com/@oliviawest111" target="_blank" rel="noopener">TikTok</a><a href="#contact">Contact</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="sparkle"></div>
+  <div class="eyebrow">Content Creator Portfolio</div>
+  <h1>Dressed for<br>the <em>scroll.</em></h1>
+  <p>Fashion and lifestyle creator turning trends, product and brand moments into social-first stories people stop for, save and shop.</p>
+  <div class="btn-row">
+    <a href="#work" class="btn solid">View the Work</a>
+    <a href="#contact" class="btn ghost">Get in Touch</a>
   </div>
 </header>
 
-<section>
-  <div class="wrap">
-    <h2>Featured Content</h2>
-    <p class="section-intro">A selection of recent posts that show range: organic trend content, a TikTok Shop best seller, and a brand collaboration, each built around native platform language, trending audio, and SEO.</p>
+<div class="stats">
+  <div class="stat"><div class="num">26.9K</div><div class="label">TikTok Followers</div></div>
+  <div class="stat"><div class="num">729.6K</div><div class="label">Total Likes</div></div>
+  <div class="stat"><div class="num">1.4M+</div><div class="label">TikTok Views</div></div>
+  <div class="stat"><div class="num">4</div><div class="label">DTC Brand Partners</div></div>
+</div>
 
-    <div class="grid">
+<section id="work">
+  <div class="section-head">
+    <div class="eyebrow">Featured Work</div>
+    <h2>The <em>Edit</em></h2>
+    <p>Search-driven try-ons, seasonal styling, a TikTok Shop best seller and a paid brand collaboration, each concepted, styled, shot and edited by me.</p>
+  </div>
 
-      <div class="card">
-        <div class="embed-holder">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@oliviawest111/video/7646160437918174477" data-video-id="7646160437918174477" style="max-width: 325px;min-width: 280px;">
-            <section>
-              <a target="_blank" href="https://www.tiktok.com/@oliviawest111?refer=embed">@oliviawest111</a>
-            </section>
-          </blockquote>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Trend + SEO</span>
-          <div class="card-stats">
-            <div class="card-stat"><b>833</b> likes</div>
-            <div class="card-stat"><b>81</b> saves</div>
-            <div class="card-stat"><b>20</b> shares</div>
-          </div>
-          <p class="card-note">Spotted this concept trending on Pinterest and adapted it natively for TikTok, pairing it with the platform's own audio and search language rather than a straight repost. Reflects an understanding of how content needs to be re-shaped, not just re-posted, to convert on a given platform.</p>
-        </div>
-      </div>
+  <div class="work">
+    <!-- To add a TikTok: copy one <article> block and swap the video ID (the long number at the end of the TikTok URL). -->
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7688478899440864525?description=0&music_info=0" allow="fullscreen" loading="lazy" title="Top performing shoppable TikTok"></iframe></div>
+      <div class="tag">Top Performer · Trend + SEO</div>
+      <h3>The Fall Wrap Cardigan</h3>
+      <div class="metrics"><span><b>$2.2K</b> GMV</span><span><b>135K+</b> Views</span><span><b>436</b> Saves</span></div>
+      <p>A Princess Polly wrap knit cardigan try-on, set to trending audio with on-screen SEO keywords built around the search for the perfect fall cardigan. Still climbing past 135K views, with $2.2K in GMV in the last 30 days alone.</p>
+    </article>
 
-      <div class="card">
-        <div class="embed-holder">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@oliviawest111/video/7515513549402164522" data-video-id="7515513549402164522" style="max-width: 325px;min-width: 280px;">
-            <section>
-              <a target="_blank" href="https://www.tiktok.com/@oliviawest111?refer=embed">@oliviawest111</a>
-            </section>
-          </blockquote>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Best Seller</span>
-          <div class="card-stats">
-            <div class="card-stat"><b>14.8K</b> likes</div>
-            <div class="card-stat"><b>3,141</b> saves</div>
-            <div class="card-stat"><b>263</b> shares</div>
-          </div>
-          <p class="card-note">This set was my best seller last summer. Built around trending audio and deliberate SEO in the caption and hashtags, then kept consistent with my personal brand rather than chasing the trend at the expense of identity. The save count, nearly 4x the like-to-save ratio of a typical post, is what signals real purchase intent.</p>
-        </div>
-      </div>
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7678828454338481421?description=0&music_info=0" allow="fullscreen" loading="lazy" title="UGA gameday outfit inspiration TikTok"></iframe></div>
+      <div class="tag">Affiliate · Revolve via ShopMy</div>
+      <h3>Gameday, Styled</h3>
+      <div class="metrics"><span><b>$400+</b> Sales</span><span><b>16.6K</b> Views</span><span><b>254</b> Saves</span></div>
+      <p>UGA gameday outfit inspiration that sent viewers to the ShopMy storefront in my bio, turning a seasonal style moment into $400+ in tracked Revolve sales.</p>
+    </article>
 
-      <div class="card">
-        <div class="embed-holder">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@oliviawest111/video/7519306907731889463" data-video-id="7519306907731889463" style="max-width: 325px;min-width: 280px;">
-            <section>
-              <a target="_blank" href="https://www.tiktok.com/@oliviawest111?refer=embed">@oliviawest111</a>
-            </section>
-          </blockquote>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Princess Polly Collab</span>
-          <div class="card-stats">
-            <div class="card-stat"><b>200K+</b> views</div>
-            <div class="card-stat"><b>1,716</b> likes</div>
-            <div class="card-stat"><b>360</b> saves</div>
-          </div>
-          <p class="card-note">A paid collaboration with Princess Polly built around low-rise denim, a trend I identified early and got ahead of. Styled and shot around trending audio and search-optimized captioning; the shorts featured became one of the brand's best sellers off the back of the post.</p>
-        </div>
-      </div>
 
-    </div>
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7515513549402164522?description=0&music_info=0" allow="fullscreen" loading="lazy" title="Best seller TikTok"></iframe></div>
+      <div class="tag">TikTok Shop Best Seller</div>
+      <h3>The Summer Set</h3>
+      <div class="metrics"><span><b>14.8K</b> Likes</span><span><b>3,141</b> Saves</span><span><b>263</b> Shares</span></div>
+      <p>Paired trending audio with caption and hashtag SEO while staying true to my personal aesthetic, which drove one of my highest save rates.</p>
+    </article>
+
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7519306907731889463?description=0&music_info=0" allow="fullscreen" loading="lazy" title="Princess Polly collaboration TikTok"></iframe></div>
+      <div class="tag">Brand Collaboration</div>
+      <h3>Princess Polly Denim</h3>
+      <div class="metrics"><span><b>200K+</b> Views</span><span><b>1,716</b> Likes</span><span><b>360</b> Saves</span></div>
+      <p>Paid collaboration styling low-rise denim. The featured shorts went on to become one of the brand's best sellers.</p>
+    </article>
   </div>
 </section>
 
-<section class="alt">
-  <div class="wrap">
-    <h2>Brand Partnerships</h2>
-    <p class="section-intro">Contracted creator work with DTC fashion brands via TikTok Shop, generating $3,000+ in GMV and 100+ product sales to date.</p>
-    <div class="partner-row">
-      <div class="partner-chip">Princess Polly</div>
-      <div class="partner-chip">Peppermayo</div>
-      <div class="partner-chip">Edikted</div>
-      <div class="partner-chip">Cider</div>
-    </div>
+<div class="brands-band" id="brands">
+  <div class="eyebrow">Brand Partnerships</div>
+  <div class="brand-list">
+    <span>Princess Polly</span><span class="dot">✦</span><span>Peppermayo</span><span class="dot">✦</span><span>Edikted</span><span class="dot">✦</span><span>Cider</span>
   </div>
-</section>
+  <p>Contracted DTC fashion creator via TikTok Shop: <b>$3,000+ in GMV</b> and <b>100+ product sales</b> to date, with a single organic try-on driving <b>$2.2K in GMV in the last 30 days</b>, plus <b>$400+ in Revolve sales</b> through my ShopMy storefront, adapting to each brand's look while keeping content native to the feed.</p>
+</div>
 
 <section>
-  <div class="wrap">
-    <h2>What I Bring to a Brand's Content Team</h2>
-    <div class="strength-grid">
-      <div class="strength">
-        <h3>On-camera & platform-native</h3>
-        <p>Comfortable on camera and fluent in native TikTok language, from trending audio to caption SEO, rather than treating the platform as a repost destination.</p>
-      </div>
-      <div class="strength">
-        <h3>Trend forecasting</h3>
-        <p>Spots emerging trends early (like low-rise denim ahead of a brand's own drop) and translates them into content before they peak.</p>
-      </div>
-      <div class="strength">
-        <h3>Content that converts</h3>
-        <p>Builds TikTok Shop content with purchase intent in mind, not just views, evidenced by save rates and $3,000+ in tracked GMV across brand partnerships.</p>
-      </div>
-      <div class="strength">
-        <h3>Data-informed creation</h3>
-        <p>Pairs creative instinct with a Business Analytics background, tracking engagement, saves, and click-through performance to inform what gets made next.</p>
-      </div>
-    </div>
+  <div class="section-head">
+    <div class="eyebrow">For Your Team</div>
+    <h2>What I <em>bring</em></h2>
+  </div>
+  <div class="bring">
+    <div class="bring-item"><div class="n">01</div><div><h3>Platform-native storytelling</h3><p>Fluent in TikTok and Instagram trends, audio and caption SEO, so I can turn a campaign into content that feels made for the feed.</p></div></div>
+    <div class="bring-item"><div class="n">02</div><div><h3>Trend forecasting</h3><p>I spot emerging aesthetics early and create around them before they peak.</p></div></div>
+    <div class="bring-item"><div class="n">03</div><div><h3>Content that converts</h3><p>I build product content around purchase intent and measure it by saves, sales and GMV, not just views.</p></div></div>
+    <div class="bring-item"><div class="n">04</div><div><h3>A visual eye, backed by data</h3><p>A Business Analytics background means I track what's working and refine the creative from there.</p></div></div>
   </div>
 </section>
+
+<div class="contact" id="contact">
+  <div class="eyebrow">Let's Work Together</div>
+  <h2>See you on <em>the feed.</em></h2>
+  <a class="email" href="mailto:oliviawest543@gmail.com">oliviawest543@gmail.com</a>
+  <div class="btn-row">
+    <a href="https://www.tiktok.com/@oliviawest111" target="_blank" rel="noopener" class="btn ghost">TikTok @oliviawest111</a>
+  </div>
+</div>
 
 <footer>
-  <div class="wrap">
-    <div class="name">Olivia West</div>
-    <div class="contact">
-      <a href="mailto:oliviawest543@gmail.com">oliviawest543@gmail.com</a>
-      <a href="https://www.tiktok.com/@oliviawest111" target="_blank" rel="noopener">@oliviawest111</a>
-    </div>
-  </div>
+  <span>© 2026 Olivia West</span>
+  <span>New York, NY</span>
 </footer>
 
-<script async src="https://www.tiktok.com/embed.js"></script>
+<style>.m-only{display:none}@media(max-width:640px){.m-only{display:inline}}</style>
 </body>
 </html>
