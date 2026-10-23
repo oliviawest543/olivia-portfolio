@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tap to Dress · Olivia West</title>
+<meta name="description" content="Sample interactive Instagram Story set for Retrofête, designed in Figma by Olivia West.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0d0c; --ink:#f4efe6; --muted:#a39c90; --line:#2a2724; --champ:#cbb38a;
+    --serif:"Playfair Display", Georgia, serif; --sans:Karla, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:40px 16px 56px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:56px;align-items:center}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--champ);margin:0 0 18px}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,64px);line-height:1.02;margin:0 0 20px;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--champ)}
+  .lede{font-size:16px;line-height:1.65;color:#d9d3c8;max-width:440px;margin:0 0 28px}
+  ol.steps{list-style:none;padding:0;margin:0 0 28px;border-top:1px solid var(--line);max-width:440px}
+  ol.steps li{border-bottom:1px solid var(--line)}
+  ol.steps button{all:unset;cursor:pointer;display:flex;gap:16px;align-items:baseline;width:100%;padding:12px 0;font-size:15px;color:var(--muted);transition:color .2s}
+  ol.steps button span{font-size:11px;letter-spacing:.2em;width:22px;flex:none}
+  ol.steps button[aria-current="true"]{color:var(--ink)}
+  ol.steps button[aria-current="true"] span{color:var(--champ)}
+  ol.steps button:focus-visible{outline:1px solid var(--champ);outline-offset:4px}
+  .by{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .by a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--champ)}
+
+  .stage{display:flex;align-items:center;gap:14px}
+  .phone{position:relative;width:min(360px,calc(100vw - 32px));aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06)}
+  .scroller{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:pointer}
+  .scroller::-webkit-scrollbar{display:none}
+  .scroller img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;scroll-snap-stop:always;user-select:none;-webkit-user-drag:none;display:block}
+  .chrome{position:absolute;left:0;right:0;top:0;padding:10px 10px 22px;pointer-events:none}
+  .bars{display:flex;gap:4px}
+  .bars i{flex:1;height:2.5px;border-radius:2px;background:rgba(0,0,0,.14);overflow:hidden}
+  .bars i b{display:block;height:100%;width:0;background:#111;transition:width .25s}
+  .acct{display:flex;align-items:center;gap:8px;margin-top:10px;color:#111;font-size:13px;font-weight:600}
+  .acct .av{width:26px;height:26px;border-radius:50%;background:#111;color:#fff;border:1.5px solid #fff;box-shadow:0 0 0 1px #111;display:grid;place-items:center;font-family:var(--serif);font-size:13px;font-weight:500}
+  .acct small{font-weight:400;color:#6b665e}
+  .hint{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:12px;letter-spacing:.06em;padding:8px 14px;border-radius:999px;pointer-events:none;transition:opacity .4s;white-space:nowrap}
+  .hint.gone{opacity:0}
+  .arrow{all:unset;cursor:pointer;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);transition:border-color .2s,opacity .2s}
+  .arrow:hover{border-color:var(--champ)}
+  .arrow:focus-visible{outline:1px solid var(--champ);outline-offset:3px}
+  .arrow[disabled]{opacity:.25;pointer-events:none}
+  .arrow svg{width:16px;height:16px}
+
+  @media (max-width:820px){
+    .wrap{grid-template-columns:1fr;gap:32px;padding-top:28px}
+    .stage{order:-1;justify-content:center}
+    .arrow{display:none}
+    .lede,ol.steps{max-width:none}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section>
+    <p class="kicker">Sample Instagram Story Set · Retrofête</p>
+    <h1>Tap to <em>Dress</em></h1>
+    <p class="lede">An interactive Story that starts with a blank sketch. Each tap adds the next piece of the look, and every piece is tagged with a shop link as it appears, so followers build the full outfit and can shop it along the way. Made for a campaign launch or the holiday edit.</p>
+    <ol class="steps" id="steps">
+      <li><button data-i="0"><span>01</span>The blank sketch</button></li>
+      <li><button data-i="1"><span>02</span>Sulvie Brocade Dress</button></li>
+      <li><button data-i="2"><span>03</span>Duchess Faux Fur Stole</button></li>
+      <li><button data-i="3"><span>04</span>Nelly Wedge</button></li>
+      <li><button data-i="4"><span>05</span>Lennox Bag</button></li>
+    </ol>
+    <p class="by">Designed in Figma by <a href="https://oliviawest543.github.io/olivia-portfolio/">Olivia West</a></p>
+  </section>
+
+  <div class="stage">
+    <button class="arrow" id="prev" aria-label="Previous frame"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 3 5 8l5 5"/></svg></button>
+    <div class="phone" aria-roledescription="carousel" aria-label="Tap to Dress Story frames">
+      <div class="scroller" id="sc">
+        <img src="frame-1.jpg" alt="Frame 1: a blank fashion sketch with the words Tap to Dress">
+        <img src="frame-2.jpg" alt="Frame 2: the sketch wearing the Sulvie Brocade Dress, with a shop link">
+        <img src="frame-3.jpg" alt="Frame 3: the Duchess Faux Fur Stole added over the dress, with a shop link">
+        <img src="frame-4.jpg" alt="Frame 4: gold Nelly Wedge sandals added, with a shop link">
+        <img src="frame-5.jpg" alt="Frame 5: the full look finished with the crystal Lennox Bag, with a shop link">
+      </div>
+      <div class="chrome">
+        <div class="bars" id="bars"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <div class="acct"><span class="av">R</span>retrofete <small>· Tap to Dress</small></div>
+      </div>
+      <div class="hint" id="hint">Tap or swipe to dress her →</div>
+    </div>
+    <button class="arrow" id="next" aria-label="Next frame"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m6 3 5 5-5 5"/></svg></button>
+  </div>
+</main>
+
+<script>
+  const sc = document.getElementById('sc');
+  const n = sc.children.length;
+  const bars = [...document.querySelectorAll('#bars b')];
+  const steps = [...document.querySelectorAll('#steps button')];
+  const prev = document.getElementById('prev'), next = document.getElementById('next');
+  const hint = document.getElementById('hint');
+  let cur = 0;
+
+  function go(i){
+    i = Math.max(0, Math.min(n - 1, i));
+    sc.scrollTo({left: i * sc.clientWidth, behavior: 'smooth'});
+  }
+  function render(i){
+    cur = i;
+    bars.forEach((b, k) => b.style.width = k <= i ? '100%' : '0');
+    steps.forEach((s, k) => s.setAttribute('aria-current', k === i ? 'true' : 'false'));
+    prev.disabled = i === 0; next.disabled = i === n - 1;
+    if (i > 0) hint.classList.add('gone');
+  }
+  sc.addEventListener('scroll', () => {
+    const i = Math.round(sc.scrollLeft / sc.clientWidth);
+    if (i !== cur) render(i);
+  }, {passive: true});
+  sc.addEventListener('click', e => {
+    const r = sc.getBoundingClientRect();
+    const left = (e.clientX - r.left) < r.width * 0.3;
+    if (left) go(cur - 1);
+    else go(cur === n - 1 ? 0 : cur + 1);
+  });
+  prev.addEventListener('click', () => go(cur - 1));
+  next.addEventListener('click', () => go(cur + 1));
+  steps.forEach(s => s.addEventListener('click', () => go(+s.dataset.i)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') go(cur + 1);
+    if (e.key === 'ArrowLeft') go(cur - 1);
+  });
+  window.addEventListener('resize', () => sc.scrollTo({left: cur * sc.clientWidth}));
+  render(0);
+</script>
+</body>
+</html>
