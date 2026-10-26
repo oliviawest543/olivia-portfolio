@@ -1,289 +1,311 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Olivia West — UGC Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Olivia West — fashion and lifestyle UGC creator. Try-ons, GRWMs and styling videos that convert.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olivia West | Fashion Content Creator</title>
+<meta name="description" content="Olivia West — NYC fashion content creator. TikTok storytelling, trend forecasting and social-first content for fashion brands.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-body{margin:0}
-a{color:#5C0A14}a:hover{color:#1E0A0C}
+  :root {
+    --black: #0a0a0a;
+    --ink: #141414;
+    --ivory: #f5f0e8;
+    --muted: #a9a49b;
+    --champagne: #cdb98a;
+    --line: rgba(245, 240, 232, 0.16);
+    --serif: "Bodoni Moda", "Didot", "Times New Roman", serif;
+    --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Announcement bar */
+  .ticker {
+    background: var(--ivory);
+    color: var(--black);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 9px 0;
+  }
+  .ticker-track { display: inline-block; animation: scroll 38s linear infinite; }
+  .ticker span { padding: 0 28px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* Nav */
+  nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 22px 40px;
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(8px);
+  }
+  .nav-links { display: flex; gap: 28px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 400; }
+  .nav-links.right { justify-content: flex-end; }
+  .nav-links a { opacity: 0.8; transition: opacity .2s; }
+  .nav-links a:hover { opacity: 1; }
+  .wordmark { font-family: var(--serif); font-size: 26px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 400; padding-left: 0.32em; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 120px 24px 110px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(205,185,138,0.16), transparent 32%),
+      radial-gradient(circle at 82% 70%, rgba(205,185,138,0.12), transparent 34%),
+      var(--black);
+  }
+  .sparkle {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 22%, #fff, transparent),
+      radial-gradient(1px 1px at 27% 68%, #f3e3b5, transparent),
+      radial-gradient(1.6px 1.6px at 41% 14%, #fff, transparent),
+      radial-gradient(1px 1px at 58% 82%, #f3e3b5, transparent),
+      radial-gradient(1.3px 1.3px at 73% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 88% 58%, #f3e3b5, transparent),
+      radial-gradient(1.2px 1.2px at 94% 12%, #fff, transparent),
+      radial-gradient(1px 1px at 6% 86%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 66% 50%, #f3e3b5, transparent),
+      radial-gradient(1px 1px at 34% 40%, #fff, transparent);
+  }
+  .eyebrow { font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--champagne); font-weight: 400; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(48px, 9vw, 124px);
+    line-height: 0.98; letter-spacing: -0.01em;
+    margin: 26px 0 30px;
+  }
+  .hero h1 em { font-style: italic; color: var(--champagne); }
+  .hero p { max-width: 560px; margin: 0 auto; color: var(--muted); font-size: 17px; }
+  .btn-row { display: flex; gap: 14px; justify-content: center; margin-top: 44px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 15px 34px;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500;
+    border: 1px solid var(--ivory); transition: background .2s, color .2s;
+  }
+  .btn.solid { background: var(--ivory); color: var(--black); }
+  .btn.solid:hover { background: var(--champagne); border-color: var(--champagne); }
+  .btn.ghost:hover { background: var(--ivory); color: var(--black); }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat { text-align: center; padding: 38px 16px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-family: var(--serif); font-size: clamp(34px, 4.6vw, 52px); line-height: 1; }
+  .stat .label { margin-top: 12px; font-size: 10.5px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
+
+  /* Sections */
+  section { padding: 110px 40px; max-width: 1240px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 64px; }
+  .section-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5vw, 60px); line-height: 1.05; margin-top: 16px; }
+  .section-head h2 em { font-style: italic; }
+  .section-head p { color: var(--muted); max-width: 540px; margin: 18px auto 0; }
+
+  /* Work grid */
+  .work { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .card { display: flex; flex-direction: column; }
+  .frame {
+    position: relative; aspect-ratio: 9 / 16; background: var(--ink);
+    border: 1px solid var(--line); overflow: hidden;
+  }
+  .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .card .tag { margin-top: 22px; font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--champagne); }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 8px 0 10px; line-height: 1.15; }
+  .metrics { display: flex; gap: 4px 12px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+  .metrics b { font-weight: 500; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  /* Brands */
+  .brands-band { background: var(--ivory); color: var(--black); text-align: center; padding: 90px 24px; }
+  .brands-band .eyebrow { color: #7d6a3e; }
+  .brand-list {
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+    gap: 14px 34px; margin: 34px auto 30px; max-width: 1000px;
+    font-family: var(--serif); font-size: clamp(26px, 3.6vw, 44px); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .brand-list .dot { font-size: 0.45em; color: #b59c5f; }
+  .brands-band p { max-width: 560px; margin: 0 auto; color: #4a463f; }
+  .brands-band p b { font-weight: 500; color: var(--black); }
+
+  /* What I bring */
+  .bring { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+  .bring-item { padding: 44px 40px 44px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 70px 1fr; gap: 10px; }
+  .bring-item:nth-child(even) { padding-left: 40px; padding-right: 0; border-left: 1px solid var(--line); }
+  .bring-item .n { font-family: var(--serif); font-style: italic; color: var(--champagne); font-size: 22px; }
+  .bring-item h3 { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+  .bring-item p { color: var(--muted); font-size: 15.5px; }
+
+  /* Contact */
+  .contact {
+    text-align: center; padding: 120px 24px; border-top: 1px solid var(--line);
+    background: radial-gradient(circle at 50% 0%, rgba(205,185,138,0.14), transparent 55%), var(--black);
+  }
+  .contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7vw, 92px); line-height: 1; margin: 20px 0 22px; }
+  .contact h2 em { font-style: italic; color: var(--champagne); }
+  .contact .email { font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); border-bottom: 1px solid var(--champagne); padding-bottom: 4px; }
+
+  footer {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    padding: 26px 40px; border-top: 1px solid var(--line);
+    font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .work { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 640px) {
+    nav { grid-template-columns: 1fr; padding: 16px; gap: 10px; justify-items: center; }
+    .nav-links.left { display: none; }
+    .nav-links.right { justify-content: center; gap: 22px; }
+    .wordmark { font-size: 21px; }
+    section { padding: 80px 16px; }
+    .hero { padding: 84px 16px 80px; }
+    .work { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .bring { grid-template-columns: 1fr; }
+    .bring-item, .bring-item:nth-child(even) { padding: 34px 0; border-left: none; grid-template-columns: 50px 1fr; }
+    footer { padding: 22px 16px; justify-content: center; text-align: center; }
+  }
 </style>
-<style>html{scroll-behavior:smooth}*{box-sizing:border-box}</style>
 </head>
 <body>
-<div style="background: #F6EDBE; color: #1E0A0C; font-family: 'DM Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.55; min-height: 100vh">
 
-<!-- NAV -->
-<header style="max-width: 1280px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<a href="#top" style="font-family: 'Instrument Serif', serif; font-size: 30px; text-decoration: none; color: #1E0A0C; letter-spacing: -0.01em">Olivia West<span style="color: #F28C6B">.</span></a>
-<nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em">
-<a href="#work" style="text-decoration: none">Work</a>
-<a href="#services" style="text-decoration: none">Services</a>
-<a href="#about" style="text-decoration: none">About</a>
-<a href="#rates" style="text-decoration: none">Rates</a>
-<a href="#contact" style="text-decoration: none; background: #1E0A0C; color: #F6EDBE; padding: 12px 20px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Let's work together</a>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Fashion Content Creator</span><span>✦</span><span>New York City</span><span>✦</span><span>1.4M+ TikTok Views</span><span>✦</span><span>Open to Social &amp; Creative Roles</span><span>✦</span>
+    <span>Fashion Content Creator</span><span>✦</span><span>New York City</span><span>✦</span><span>1.4M+ TikTok Views</span><span>✦</span><span>Open to Social &amp; Creative Roles</span><span>✦</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-links left"><a href="#work">Work</a><a href="#brands">Brands</a></div>
+  <a href="#top" class="wordmark">Olivia West</a>
+  <div class="nav-links right"><a href="#work" class="m-only">Work</a><a href="https://www.tiktok.com/@oliviawest111" target="_blank" rel="noopener">TikTok</a><a href="#contact">Contact</a></div>
 </nav>
+
+<header class="hero" id="top">
+  <div class="sparkle"></div>
+  <div class="eyebrow">Content Creator Portfolio</div>
+  <h1>Dressed for<br>the <em>scroll.</em></h1>
+  <p>Fashion and lifestyle creator turning trends, product and brand moments into social-first stories people stop for, save and shop.</p>
+  <div class="btn-row">
+    <a href="#work" class="btn solid">View the Work</a>
+    <a href="#contact" class="btn ghost">Get in Touch</a>
+  </div>
 </header>
 
-<!-- HERO -->
-<section id="top" style="max-width: 1280px; margin: 0 auto; padding: 56px 32px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 64px">
-<div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: #5C0A14">Fashion &amp; lifestyle UGC creator · NYC-bound</p>
-<h1 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(56px, 8vw, 116px); line-height: 0.92; letter-spacing: -0.03em">UGC that sells the <em style="color: #5C0A14">outfit</em>, not just shows it.</h1>
-<p style="margin: 0; max-width: 520px; font-size: 19px">I make scroll-stopping try-ons, GRWMs and styling videos for fashion and beauty brands — built around trends, search and a business-analytics brain.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 10px">
-<span style="border: 1.5px solid #1E0A0C; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500">GRWM</span>
-<span style="border: 1.5px solid #1E0A0C; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500">Try-on hauls</span>
-<span style="border: 1.5px solid #1E0A0C; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500">Styling 3 ways</span>
-<span style="border: 1.5px solid #1E0A0C; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500">Unboxing</span>
-<span style="border: 1.5px solid #1E0A0C; border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 500">Voiceover demos</span>
+<div class="stats">
+  <div class="stat"><div class="num">26.9K</div><div class="label">TikTok Followers</div></div>
+  <div class="stat"><div class="num">729.6K</div><div class="label">Total Likes</div></div>
+  <div class="stat"><div class="num">1.4M+</div><div class="label">TikTok Views</div></div>
+  <div class="stat"><div class="num">4</div><div class="label">DTC Brand Partners</div></div>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px">
-<a href="#work" style="background: #F28C6B; color: #1E0A0C; text-decoration: none; font-weight: 700; padding: 16px 28px; border-radius: 999px; min-height: 44px; box-sizing: border-box">See my work</a>
-<a href="https://www.tiktok.com/@oliviawest111" style="border: 1.5px solid #1E0A0C; color: #1E0A0C; text-decoration: none; font-weight: 700; padding: 16px 28px; border-radius: 999px; min-height: 44px; box-sizing: border-box">@oliviawest111 on TikTok</a>
-</div>
-</div>
-<div style="flex: 1 1 420px; display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: 520px">
-<video src="layering.mp4" poster="layering.jpg" autoplay="" muted="" loop="" playsinline="" aria-label="Tops That You Can Layer try-on video" style="width: 200px; aspect-ratio: 9 / 16; object-fit: cover; background: #5C0A14; border-radius: 28px; border: 6px solid #1E0A0C; box-sizing: border-box; transform: rotate(-7deg) translateX(28px); display: block"></video>
-<video src="gameday.mp4" poster="gameday.jpg" autoplay="" muted="" loop="" playsinline="" aria-label="UGA Gameday Outfit Inspo video" style="width: 240px; aspect-ratio: 9 / 16; object-fit: cover; background: #BA0C2F; border-radius: 32px; border: 6px solid #1E0A0C; box-sizing: border-box; position: relative; z-index: 2; display: block"></video>
-<video src="cider.mp4" poster="cider.jpg" autoplay="" muted="" loop="" playsinline="" aria-label="Cutest Fall Top try-on video for Cider" style="width: 200px; aspect-ratio: 9 / 16; object-fit: cover; background: #1E0A0C; border-radius: 28px; border: 6px solid #1E0A0C; box-sizing: border-box; transform: rotate(7deg) translateX(-28px); display: block"></video>
-</div>
+
+<section id="work">
+  <div class="section-head">
+    <div class="eyebrow">Featured Work</div>
+    <h2>The <em>Edit</em></h2>
+    <p>Search-driven try-ons, seasonal styling, a TikTok Shop best seller and a paid brand collaboration, each concepted, styled, shot and edited by me.</p>
+  </div>
+
+  <div class="work">
+    <!-- To add a TikTok: copy one <article> block and swap the video ID (the long number at the end of the TikTok URL). -->
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7688478899440864525?description=0&music_info=0" allow="fullscreen" loading="lazy" title="Top performing shoppable TikTok"></iframe></div>
+      <div class="tag">Top Performer · Trend + SEO</div>
+      <h3>The Fall Wrap Cardigan</h3>
+      <div class="metrics"><span><b>$2.2K</b> GMV</span><span><b>135K+</b> Views</span><span><b>436</b> Saves</span></div>
+      <p>A Princess Polly wrap knit cardigan try-on, set to trending audio with on-screen SEO keywords built around the search for the perfect fall cardigan. Still climbing past 135K views, with $2.2K in GMV in the last 30 days alone.</p>
+    </article>
+
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7678828454338481421?description=0&music_info=0" allow="fullscreen" loading="lazy" title="UGA gameday outfit inspiration TikTok"></iframe></div>
+      <div class="tag">Affiliate · Revolve via ShopMy</div>
+      <h3>Gameday, Styled</h3>
+      <div class="metrics"><span><b>$400+</b> Sales</span><span><b>16.6K</b> Views</span><span><b>254</b> Saves</span></div>
+      <p>UGA gameday outfit inspiration that sent viewers to the ShopMy storefront in my bio, turning a seasonal style moment into $400+ in tracked Revolve sales.</p>
+    </article>
+
+
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7515513549402164522?description=0&music_info=0" allow="fullscreen" loading="lazy" title="Best seller TikTok"></iframe></div>
+      <div class="tag">TikTok Shop Best Seller</div>
+      <h3>The Summer Set</h3>
+      <div class="metrics"><span><b>14.8K</b> Likes</span><span><b>3,141</b> Saves</span><span><b>263</b> Shares</span></div>
+      <p>Paired trending audio with caption and hashtag SEO while staying true to my personal aesthetic, which drove one of my highest save rates.</p>
+    </article>
+
+    <article class="card">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/7519306907731889463?description=0&music_info=0" allow="fullscreen" loading="lazy" title="Princess Polly collaboration TikTok"></iframe></div>
+      <div class="tag">Brand Collaboration</div>
+      <h3>Princess Polly Denim</h3>
+      <div class="metrics"><span><b>200K+</b> Views</span><span><b>1,716</b> Likes</span><span><b>360</b> Saves</span></div>
+      <p>Paid collaboration styling low-rise denim. The featured shorts went on to become one of the brand's best sellers.</p>
+    </article>
+  </div>
 </section>
 
-<!-- TICKER -->
-<div style="background: #1E0A0C; color: #F6EDBE; padding: 18px 0; overflow: hidden; white-space: nowrap; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 34px">
-<div style="display: flex; gap: 36px; align-items: center; padding-left: 32px">
-<span>Get ready with me</span>
-<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-<span>Try-on hauls</span>
-<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-<span>Outfit formulas</span>
-<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-<span>Unboxings</span>
-<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-<span>UGA gameday fits</span>
-<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-<span>Product demos</span>
-</div>
+<div class="brands-band" id="brands">
+  <div class="eyebrow">Brand Partnerships</div>
+  <div class="brand-list">
+    <span>Princess Polly</span><span class="dot">✦</span><span>Peppermayo</span><span class="dot">✦</span><span>Edikted</span><span class="dot">✦</span><span>Cider</span>
+  </div>
+  <p>Contracted DTC fashion creator via TikTok Shop: <b>$3,000+ in GMV</b> and <b>100+ product sales</b> to date, with a single organic try-on driving <b>$2.2K in GMV in the last 30 days</b>, plus <b>$400+ in Revolve sales</b> through my ShopMy storefront, adapting to each brand's look while keeping content native to the feed.</p>
 </div>
 
-<!-- STATS -->
-<section aria-label="At a glance" style="max-width: 1280px; margin: 0 auto; padding: 72px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px">
-<div style="border-top: 2px solid #1E0A0C; padding-top: 16px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 64px; line-height: 1">1.4M+</p>
-<p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">TikTok views</p>
-</div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 16px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 64px; line-height: 1">26.9K</p>
-<p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">TikTok followers</p>
-</div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 16px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 64px; line-height: 1">729.6K</p>
-<p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">Total likes</p>
-</div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 16px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 64px; line-height: 1">$3.2K</p>
-<p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">TikTok Shop GMV in October alone</p>
-</div>
+<section>
+  <div class="section-head">
+    <div class="eyebrow">For Your Team</div>
+    <h2>What I <em>bring</em></h2>
+  </div>
+  <div class="bring">
+    <div class="bring-item"><div class="n">01</div><div><h3>Platform-native storytelling</h3><p>Fluent in TikTok and Instagram trends, audio and caption SEO, so I can turn a campaign into content that feels made for the feed.</p></div></div>
+    <div class="bring-item"><div class="n">02</div><div><h3>Trend forecasting</h3><p>I spot emerging aesthetics early and create around them before they peak.</p></div></div>
+    <div class="bring-item"><div class="n">03</div><div><h3>Content that converts</h3><p>I build product content around purchase intent and measure it by saves, sales and GMV, not just views.</p></div></div>
+    <div class="bring-item"><div class="n">04</div><div><h3>A visual eye, backed by data</h3><p>A Business Analytics background means I track what's working and refine the creative from there.</p></div></div>
+  </div>
 </section>
 
-<!-- BRANDS -->
-<section aria-label="Brand partners" style="max-width: 1280px; margin: 0 auto; padding: 0 32px 56px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: #5C0A14">Worked with</p>
-<span style="font-family: 'Instrument Serif', serif; font-size: 36px">Princess Polly</span>
-<span style="font-family: 'Instrument Serif', serif; font-size: 36px">Peppermayo</span>
-<span style="font-family: 'Instrument Serif', serif; font-size: 36px">Edikted</span>
-<span style="font-family: 'Instrument Serif', serif; font-size: 36px">Cider</span>
-<span style="font-family: 'Instrument Serif', serif; font-size: 36px">Revolve <em style="font-size: 22px">via ShopMy</em></span>
-</section>
+<div class="contact" id="contact">
+  <div class="eyebrow">Let's Work Together</div>
+  <h2>See you on <em>the feed.</em></h2>
+  <a class="email" href="mailto:oliviawest543@gmail.com">oliviawest543@gmail.com</a>
+  <div class="btn-row">
+    <a href="https://www.tiktok.com/@oliviawest111" target="_blank" rel="noopener" class="btn ghost">TikTok @oliviawest111</a>
+  </div>
+</div>
 
-<!-- SHOP RESULTS -->
-<section aria-label="TikTok Shop results" style="max-width: 1280px; margin: 0 auto; padding: 0 32px 56px">
-<div style="background: #FFFBEA; border: 2px solid #1E0A0C; border-radius: 32px; padding: 40px; display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
-<div style="display: flex; flex-direction: column; gap: 8px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: #5C0A14">TikTok Shop · Oct 1–25, 2026</p>
-<h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(36px, 4.5vw, 60px); line-height: 1; letter-spacing: -0.02em">From scroll to <em style="color: #5C0A14">checkout</em>.</h2>
-</div>
-<p style="margin: 0; background: #1E0A0C; color: #FFFBEA; padding: 8px 16px; border-radius: 999px; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em">GMV up 2,000%+ vs. prior period</p>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px">
-<div style="border-top: 2px solid #1E0A0C; padding-top: 14px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 1">172.9K</p><p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">Product impressions</p></div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 14px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 1">4.0K</p><p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">Product clicks</p></div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 14px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 1">55</p><p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">Items sold</p></div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 14px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 1">$3.2K</p><p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">Attributed GMV</p></div>
-<div style="border-top: 2px solid #1E0A0C; padding-top: 14px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 1">$375</p><p style="margin: 6px 0 0; font-size: 15px; color: #5C0A14">Est. commissions</p></div>
-</div>
-</div>
-</section>
-
-<!-- WORK -->
-<section id="work" style="max-width: 1280px; margin: 0 auto; padding: 48px 32px 96px; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
-<h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 6vw, 80px); line-height: 1; letter-spacing: -0.02em">Selected <em style="color: #5C0A14">work</em></h2>
-<p style="margin: 0; max-width: 380px; font-size: 16px">Each piece is built around one hook, one product moment and one reason to tap. Tap any video to watch it on TikTok.</p>
-</div>
-<article style="display: flex; flex-wrap: wrap; align-items: center; gap: 48px; background: #1E0A0C; color: #FFFBEA; border-radius: 32px; padding: 40px">
-<video src="gameday.mp4" poster="gameday.jpg" controls="" playsinline="" preload="metadata" aria-label="UGA Gameday Outfit Inspo video" style="flex: 0 0 300px; width: 300px; aspect-ratio: 9 / 16; object-fit: cover; background: #BA0C2F; border: 4px solid #BA0C2F; box-sizing: border-box; border-radius: 26px; display: block"></video>
-<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 20px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: #F28C6B">Featured · Affiliate · Revolve via ShopMy</p>
-<h3 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 0.95; letter-spacing: -0.02em">Gameday, <em>Styled</em></h3>
-<p style="margin: 0; font-size: 18px; max-width: 560px">UGA gameday outfit inspiration that sent viewers to the ShopMy storefront in my bio, turning a seasonal style moment into $400+ in tracked Revolve sales. <a href="https://www.tiktok.com/@oliviawest111/video/7678828454338481421" style="color: #FFFBEA">Watch on TikTok</a></p>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 560px; margin-top: 8px">
-<div style="border-top: 1.5px solid #FFFBEA; padding-top: 12px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 48px; line-height: 1">$400+</p><p style="margin: 4px 0 0; font-size: 14px">Sales</p></div>
-<div style="border-top: 1.5px solid #FFFBEA; padding-top: 12px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 48px; line-height: 1">16.6K</p><p style="margin: 4px 0 0; font-size: 14px">Views</p></div>
-<div style="border-top: 1.5px solid #FFFBEA; padding-top: 12px"><p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 48px; line-height: 1">254</p><p style="margin: 4px 0 0; font-size: 14px">Saves</p></div>
-</div>
-</div>
-</article>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px">
-<article style="display: flex; flex-direction: column; gap: 12px">
-<video src="layering.mp4" poster="layering.jpg" controls="" muted="" loop="" playsinline="" preload="metadata" aria-label="Tops That You Can Layer try-on video" style="width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #1E0A0C; border-radius: 22px; display: block"></video>
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #5C0A14">New · Fall layering try-on</p>
-<h3 style="margin: 0; font-size: 19px; font-weight: 700">Tops That You Can Layer</h3>
-<p style="margin: 0; font-size: 15px">14.4K+ views in 24 hours and climbing · 6 items sold · Filmed and edited by me</p>
-</article>
-<article style="display: flex; flex-direction: column; gap: 12px">
-<video src="cider.mp4" poster="cider.jpg" controls="" muted="" loop="" playsinline="" preload="metadata" aria-label="Cutest Fall Top try-on video for Cider" style="width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #1E0A0C; border-radius: 22px; display: block"></video>
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #5C0A14">Brand partner · Try-on</p>
-<h3 style="margin: 0; font-size: 19px; font-weight: 700">The Cutest Fall Top</h3>
-<p style="margin: 0; font-size: 15px">Cider · $120 GMV</p>
-</article>
-<article style="display: flex; flex-direction: column; gap: 12px">
-<video src="cardigan.mp4" poster="cardigan.jpg" controls="" muted="" loop="" playsinline="" preload="metadata" aria-label="The Fall Wrap Cardigan try-on video" style="width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #5C0A14; border-radius: 22px; display: block"></video>
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #5C0A14">Top performer · Trend + SEO</p>
-<h3 style="margin: 0; font-size: 19px; font-weight: 700">The Fall Wrap Cardigan</h3>
-<p style="margin: 0; font-size: 15px">Princess Polly · $2.5K GMV · 135K+ views · 491 saves · <a href="https://www.tiktok.com/@oliviawest111/video/7688478899440864525">Watch on TikTok</a></p>
-</article>
-<article style="display: flex; flex-direction: column; gap: 12px">
-<video src="summer.mp4" poster="summer.jpg" controls="" muted="" loop="" playsinline="" preload="metadata" aria-label="The Summer Set video" style="width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #F28C6B; border-radius: 22px; display: block"></video>
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #5C0A14">TikTok Shop best seller</p>
-<h3 style="margin: 0; font-size: 19px; font-weight: 700">The Summer Set</h3>
-<p style="margin: 0; font-size: 15px">14.8K likes · 3,141 saves · 263 shares · <a href="https://www.tiktok.com/@oliviawest111/video/7515513549402164522">Watch on TikTok</a></p>
-</article>
-</div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" style="background: #5C0A14; color: #F6EDBE">
-<div style="max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-direction: column; gap: 48px">
-<h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 6vw, 80px); line-height: 1; letter-spacing: -0.02em">What I <em>make</em></h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
-<div style="border: 1.5px solid #F6EDBE; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px">01</p>
-<h3 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; line-height: 1.05">Short-form video</h3>
-<p style="margin: 0; font-size: 16px">15–60s vertical videos for TikTok, Reels and Shorts — GRWMs, try-ons, styling and demos, edited and captioned.</p>
-</div>
-<div style="border: 1.5px solid #F6EDBE; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px">02</p>
-<h3 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; line-height: 1.05">Photo content</h3>
-<p style="margin: 0; font-size: 16px">On-body outfit shots, flat-lays and lifestyle images for PDPs, ads and organic posts.</p>
-</div>
-<div style="border: 1.5px solid #F6EDBE; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px">03</p>
-<h3 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; line-height: 1.05">Hooks &amp; scripts</h3>
-<p style="margin: 0; font-size: 16px">Multiple hook variations per video so your team can A/B test the first three seconds.</p>
-</div>
-<div style="border: 1.5px solid #F6EDBE; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px">04</p>
-<h3 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; line-height: 1.05">Raw footage</h3>
-<p style="margin: 0; font-size: 16px">Unedited clips and B-roll your editors can cut into ads, plus paid-usage and whitelisting options.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" style="max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
-<figure style="flex: 0 1 380px; margin: 0; display: flex; flex-direction: column; gap: 14px">
-<video src="intro.mp4" poster="intro.jpg" controls="" playsinline="" preload="metadata" aria-label="Meet Olivia: a one-minute intro video" style="width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #1E0A0C; border: 6px solid #1E0A0C; box-sizing: border-box; border-radius: 32px; display: block"></video>
-<figcaption style="display: flex; justify-content: space-between; gap: 12px; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #5C0A14"><span>Meet Olivia · Press play, sound on</span><span>1:06</span></figcaption>
-</figure>
-<div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: #5C0A14">About me</p>
-<h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.02em">A creator who <em style="color: #5C0A14">reads the data</em>.</h2>
-<p style="margin: 0; font-size: 18px">Hi, I'm Olivia — a Virginia-raised fashion and lifestyle creator, soon to be based in New York. Since 2024 I've concepted, styled, shot and edited every piece of my content myself, building to 27K TikTok followers and 1.4M+ views, and creating product content for Peppermayo, Edikted, Princess Polly and Cider.</p>
-<p style="margin: 0; font-size: 18px">I studied Economics with an emphasis in Business Analytics at the University of Georgia (plus a semester in Barcelona), and I've run social for brands from the inside: at Artemis Shopping I managed the content calendar, evaluated paid media in Meta Ads Manager and lifted engagement 27% in three months. Translation: I think about your CPA while I'm picking the outfit.</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px">
-<div style="background: #FFFBEA; border-radius: 18px; padding: 18px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 44px; line-height: 1">4.4%</p>
-<p style="margin: 6px 0 0; font-size: 15px">Average TikTok engagement rate over 365 days</p>
-</div>
-<div style="background: #FFFBEA; border-radius: 18px; padding: 18px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 44px; line-height: 1">249.9K</p>
-<p style="margin: 6px 0 0; font-size: 15px">Views on a top post in a single day</p>
-</div>
-<div style="background: #FFFBEA; border-radius: 18px; padding: 18px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 44px; line-height: 1">61K+</p>
-<p style="margin: 6px 0 0; font-size: 15px">Instagram accounts reached in 90 days</p>
-</div>
-<div style="background: #FFFBEA; border-radius: 18px; padding: 18px">
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 44px; line-height: 1">63.8%</p>
-<p style="margin: 6px 0 0; font-size: 15px">Of Instagram views from non-followers</p>
-</div>
-</div>
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.8; color: #5C0A14">Toolkit: CapCut · Canva · TikTok Shop · Meta Ads Manager · HubSpot · native TikTok &amp; Instagram analytics</p>
-</div>
-</section>
-
-<!-- RATES -->
-<section id="rates" style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 96px; display: flex; flex-direction: column; gap: 40px">
-<h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 6vw, 80px); line-height: 1; letter-spacing: -0.02em">Packages</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
-<div style="background: #FFFBEA; border: 2px solid #1E0A0C; border-radius: 28px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em">The Single</p>
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 56px; line-height: 1">$250</p>
-<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 16px">
-<li>1 edited UGC video (up to 60s)</li>
-<li>2 hook variations</li>
-<li>1 round of revisions</li>
-</ul>
-</div>
-<div style="background: #1E0A0C; color: #F6EDBE; border: 2px solid #1E0A0C; border-radius: 28px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; display: flex; justify-content: space-between; gap: 12px">The Trio <span style="background: #F28C6B; color: #1E0A0C; padding: 2px 10px; border-radius: 999px">Most booked</span></p>
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 56px; line-height: 1">$650</p>
-<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 16px">
-<li>3 edited UGC videos</li>
-<li>3 hook variations each</li>
-<li>5 product photos</li>
-<li>2 rounds of revisions</li>
-</ul>
-</div>
-<div style="background: #FFFBEA; border: 2px solid #1E0A0C; border-radius: 28px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
-<p style="margin: 0; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em">The Monthly</p>
-<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 56px; line-height: 1">$1,100</p>
-<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 16px">
-<li>4 videos per month</li>
-<li>Raw footage included</li>
-<li>Monthly performance check-in</li>
-</ul>
-</div>
-</div>
-<p style="margin: 0; font-size: 15px; color: #5C0A14">All packages include 30 days of organic usage. Add-ons: paid ad usage (3 months) +30% · whitelisting / Spark Ads from $150/mo · raw footage +$75 per video · extra hook +$40 · 48-hour rush +35%. Custom scopes on request.</p>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" style="background: #F28C6B">
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 32px">
-<h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(52px, 8vw, 120px); line-height: 0.95; letter-spacing: -0.03em; max-width: 1000px">Let's make something people actually <em>save</em>.</h2>
-<a href="mailto:oliviawest543@gmail.com" style="background: #1E0A0C; color: #F6EDBE; text-decoration: none; font-weight: 700; font-size: 20px; padding: 20px 32px; border-radius: 999px; min-height: 44px; box-sizing: border-box">oliviawest543@gmail.com</a>
-<div style="display: flex; flex-wrap: wrap; gap: 24px; font-family: 'DM Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em">
-<a href="https://www.tiktok.com/@oliviawest111" style="color: #1E0A0C">TikTok</a>
-<a href="https://www.instagram.com/oliviawest11/" style="color: #1E0A0C">Instagram</a>
-<a href="https://shopmy.us/shop/oliviawest11" style="color: #1E0A0C">ShopMy</a>
-<a href="https://oliviawest543.github.io/olivia-portfolio/" style="color: #1E0A0C">Full portfolio</a>
-</div>
-</div>
-</section>
-
-<footer style="max-width: 1280px; margin: 0 auto; padding: 28px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em">
-<span>© 2026 Olivia West</span>
-<span>UGC · Fashion · Lifestyle</span>
+<footer>
+  <span>© 2026 Olivia West</span>
+  <span>New York, NY</span>
 </footer>
 
-</div>
+<style>.m-only{display:none}@media(max-width:640px){.m-only{display:inline}}</style>
 </body>
 </html>
