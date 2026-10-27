@@ -113,11 +113,11 @@
       <div class="hint">Swipe or tap the arrows on the carousels, and press play on the videos.</div>
       <div class="grid" id="grid"></div>`;
     const grid = s.querySelector('#grid');
-    grid.appendChild(carousel('hands', 'Instagram carousel · 6 slides', 'I Did This With My Own Hands',
-      'Personal carousel: her apartment-to-empire founder story.', 6,
-      ["Early tarte days at a cluttered desk: I did this with my own hands", "Couldn't afford an office, so I made my apartment one",
-       'And took the hustle everywhere', '6 years later, we were still working out of that apartment',
-       'tarte on the Oprah Magazine O List: then one little yes changed everything', "Couldn't afford an office, now we book the whole trip"]));
+    grid.appendChild(carousel('hands', 'Instagram carousel · 6 slides', 'Hills I Will Die On as a Beauty Founder',
+      'Personal carousel: her founder lessons over photos from the early tarte days.', 6,
+      ['Hills I will die on as a beauty founder', "You don't need everyone to believe in your vision. You just need to.",
+       'Being a little delusional is a prerequisite for being an entrepreneur.', "The people you build with matter just as much as what you're building.",
+       'tarte on the Oprah Magazine O List: the right person believing in your product can change everything.', "The best marketing doesn't feel like marketing."]));
     grid.appendChild(carousel('both', 'Instagram carousel · 5 slides', "Btw, It's Cool to Do Both",
       'Relatable carousel: CEO and fun, family and empire.', 5,
       ["Btw, it's cool to do both", 'Build a billion-dollar beauty brand and be the most unserious person in the office',
@@ -136,7 +136,7 @@
     card.innerHTML = `
       <div class="media c45">
         <div class="scroller" tabindex="0" aria-label="${title} slides">
-          ${alts.map((a, k) => `<img src="${id}-${k + 1}.jpg" alt="${a.replace(/"/g, '&quot;')}" draggable="false">`).join('')}
+          ${alts.map((a, k) => `<img src="${id}-${k + 1}.jpg?v=2" alt="${a.replace(/"/g, '&quot;')}" draggable="false">`).join('')}
         </div>
         <button type="button" class="nav prev" id="${id}-prev" aria-label="Previous slide">${arrowL}</button>
         <button type="button" class="nav next" id="${id}-next" aria-label="Next slide">${arrowR}</button>
