@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vivrelle Content Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: Olivia's deck system (same as her Maureen page), recolored for Vivrelle:
+     slides stacked on a near-black ground, rose accent from the Vivrelle V, one ivory calendar slide.
+     Single deliberate dark look. */
+  :root {
+    --ground: #110d0f;
+    --slide: #1c1619;
+    --paper: #f7f0ed;
+    --muted: #bcadb1;
+    --rose: #f2a9b7;
+    --line: #3b2e33;
+    --ivory: #f8f2ef;
+    --ink: #1c1619;
+    --ink-muted: #6f5f64;
+    --tint: #f5e3e6;
+    --rose-deep: #a9475d;
+    --cal-line: #e6d7da;
+    --serif: "Bodoni Moda", Didot, "Times New Roman", serif;
+    --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    background: var(--ground); color: var(--paper); font-family: var(--sans); font-weight: 300;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px 48px;
+  }
+  a { color: inherit; text-decoration-color: var(--rose); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+  .deck { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+  .bar {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted);
+  }
+  .bar b { font-family: var(--serif); font-weight: 400; font-size: 15px; letter-spacing: 0.3em; color: var(--paper); }
+
+  .slide {
+    position: relative; width: 100%; max-width: 100%; border-radius: 6px;
+    background: var(--slide); box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    padding: clamp(18px, 4vw, 52px); display: flex; flex-direction: column; gap: clamp(20px, 3vw, 34px);
+  }
+  @media (min-width: 900px) { .slide.cover { aspect-ratio: 11 / 8.5; } }
+  .top {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+    border-bottom: 1px solid var(--line); padding-bottom: 14px;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted);
+  }
+  .top b { font-family: var(--serif); font-weight: 400; font-size: 15px; letter-spacing: 0.32em; color: var(--paper); white-space: nowrap; }
+  .top span:last-child { text-align: right; }
+  @media (max-width: 560px) { .top { grid-template-columns: 1fr auto; } .top b { display: none; } }
+
+  .head { text-align: center; display: flex; flex-direction: column; gap: 8px; }
+  .eyebrow { font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--rose); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; }
+  h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; }
+  h2 em, h1 em { font-style: italic; }
+  .lede { color: var(--muted); font-size: 14px; max-width: 70ch; margin: 0 auto; line-height: 1.55; }
+  p { margin: 0; }
+
+  /* cover */
+  .cover { justify-content: space-between; text-align: center; }
+  .cover .mid { display: flex; flex-direction: column; gap: 22px; align-items: center; padding-block: clamp(24px, 6vw, 70px); }
+  .cover h1 { font-size: clamp(46px, 8vw, 96px); line-height: 1; }
+  .cover h1 em { color: var(--rose); }
+  .cover .lede { font-size: clamp(14px, 1.6vw, 17px); max-width: 60ch; }
+  .cover .foot { border-top: 1px solid var(--line); padding-top: 16px; width: min(560px, 100%); margin: 0 auto;
+    display: flex; flex-direction: column; gap: 10px; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
+  .cover .foot .dot { color: var(--line); padding-inline: 8px; }
+
+  /* stat strip */
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+  .stat { text-align: center; padding: 18px 8px; display: flex; flex-direction: column; gap: 8px; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat strong { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 46px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat strong.acc { color: var(--rose); }
+  .stat span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat:nth-child(3) { border-left: 0; } .stat:nth-child(n+3) { border-top: 1px solid var(--line); } }
+  .asof { text-align: right; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: -18px; }
+
+  /* columns */
+  .cols { display: grid; gap: 22px; }
+  .cols.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cols.c5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+  .cols.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cols.c5 > * { padding-inline: 14px; }
+  .cols.c5 > * + * { border-left: 1px solid var(--line); }
+  .cols.c5 > *:first-child { padding-left: 0; }
+  .cols.c5 > *:last-child { padding-right: 0; }
+  @media (max-width: 900px) {
+    .cols.c5, .cols.c4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 20px; }
+    .cols.c5 > * { padding-inline: 0; border-left: 0 !important; }
+  }
+  @media (max-width: 640px) { .cols.c3, .cols.c5, .cols.c4 { grid-template-columns: minmax(0, 1fr); } }
+  .col { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .num { font-family: var(--serif); font-style: italic; color: var(--rose); font-size: 26px; line-height: 1; }
+  .col h3 { font-size: 21px; line-height: 1.2; }
+  .col .rule { border-top: 1px solid var(--line); }
+  .col p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .tagline { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .big { font-family: var(--serif); font-size: 17px; line-height: 1.35; color: var(--paper) !important; }
+  .label { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--rose); }
+
+  /* pillar mix */
+  .mixbar { display: flex; width: 100%; border-radius: 3px; overflow: hidden; }
+  .mixbar div { padding: 9px 10px; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .mixbar div:nth-child(1) { background: var(--rose); }
+  .mixbar div:nth-child(2) { background: #dc8fa0; }
+  .mixbar div:nth-child(3) { background: #c57789; }
+  .mixbar div:nth-child(4) { background: #a9647a; }
+  .pct { font-family: var(--serif); font-size: 15px; color: var(--paper); }
+  .meta { display: flex; flex-direction: column; gap: 3px; }
+  .meta p { font-size: 13px !important; }
+  .cut { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px 28px; border-top: 1px solid var(--line); padding-top: 18px; align-items: baseline; }
+  .cut h3 { font-size: 19px; }
+  .cut p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+  @media (max-width: 640px) { .cut { grid-template-columns: minmax(0, 1fr); } .mixbar div { font-size: 8px; padding-inline: 6px; } }
+  /* idea list */
+  .ideas { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ideas li { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; font-size: 14px; line-height: 1.4; }
+  .chip { font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); border: 1px solid var(--rose); border-radius: 3px; padding: 2px 6px; }
+
+  /* data grid */
+  .data { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .data > div { padding: 18px 22px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .data > div:nth-child(3n+1) { padding-left: 0; }
+  .data > div:nth-child(3n) { padding-right: 0; }
+  .data > div:nth-child(3n+2), .data > div:nth-child(3n) { border-left: 1px solid var(--line); }
+  .data > div:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .data strong { font-family: var(--serif); font-weight: 400; color: var(--rose); font-size: clamp(38px, 5vw, 58px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .data p { font-size: 14px; line-height: 1.5; }
+  .data .so { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 16px; line-height: 1.35; }
+  .data small { margin-top: auto; padding-top: 8px; font-size: 10px; color: var(--muted); opacity: 0.8; }
+  @media (max-width: 900px) {
+    .data { grid-template-columns: minmax(0, 1fr); }
+    .data > div { padding-inline: 0 !important; border-left: 0 !important; }
+    .data > div + div { border-top: 1px solid var(--line); }
+  }
+
+  /* flow boxes */
+  .flow { display: grid; gap: 12px; align-items: stretch; }
+  .flow.f4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .flow.f5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .box { position: relative; border: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .box.lead { border-color: var(--rose); }
+  .box h3 { font-size: 20px; }
+  .box p { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+  .box .label { margin-top: auto; padding-top: 14px; color: var(--muted); }
+  .box:not(:last-child)::after { content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); color: var(--rose); background: var(--slide); font-size: 14px; line-height: 1; padding: 2px 0; }
+  @media (max-width: 900px) {
+    .flow.f4, .flow.f5 { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .box:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -15px; transform: translateX(50%); padding: 0 4px; }
+  }
+
+  /* lineup */
+  .lineup { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px 16px; }
+  .lineup div { border-top: 1px solid var(--rose); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .lineup span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+  .lineup em { font-family: var(--serif); font-size: 16px; line-height: 1.3; }
+  @media (max-width: 900px) { .lineup { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .why { border-top: 1px solid var(--line); padding-top: 18px; }
+  .why h3 { font-size: 19px; }
+
+  /* format cards */
+  .fmt { display: flex; flex-direction: column; gap: 10px; min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+  .fmt h3 { font-size: 21px; }
+  .hook { font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.35; color: var(--rose); }
+  .fmt dl { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .fmt dt { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+  .fmt dd { margin: 3px 0 0; font-size: 13.5px; line-height: 1.5; }
+  .slides-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; font-size: 13.5px; line-height: 1.45; color: var(--paper); }
+  .slides-list li::marker { color: var(--rose); font-family: var(--serif); }
+  .day { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--rose); }
+
+  /* measure table */
+  .tbl-wrap { overflow-x: auto; }
+  table.measure { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+  .measure th { text-align: left; font-weight: 400; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); padding: 0 14px 10px 0; border-bottom: 1px solid var(--line); }
+  .measure td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+  .measure td:first-child { font-family: var(--serif); font-size: 18px; color: var(--paper); white-space: nowrap; }
+  .measure td:nth-child(2) { color: var(--paper); }
+  .measure td:nth-child(3) { color: var(--muted); }
+
+  /* calendar (light slide) */
+  .slide.light { background: var(--ivory); color: var(--ink); }
+  .slide.light .top { border-color: var(--cal-line); color: var(--ink-muted); }
+  .slide.light .top b { color: var(--ink); }
+  .slide.light .eyebrow { color: var(--rose-deep); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .k { font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; color: var(--ivory); white-space: nowrap; }
+  .k.tt { background: var(--ink); }
+  .k.ig { background: #6c4a7a; }
+  .k.st { background: #8a7d82; }
+  .k.nights { background: var(--rose-deep); }
+  .k.pin { background: #b23a35; }
+  .k.em { background: #3f5a6b; }
+  .week { display: flex; flex-direction: column; gap: 10px; }
+  .wk-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 18px; border-bottom: 1px solid var(--cal-line); padding-bottom: 8px; }
+  .wk-head span { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
+  .wk-head em { font-family: var(--serif); font-size: 21px; color: var(--ink); }
+  .cal-scroll { overflow-x: auto; }
+  .cal { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); min-width: 826px; }
+  .cell { padding: 10px 10px 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .cell + .cell { border-left: 1px solid var(--cal-line); }
+  .cell.on { background: var(--tint); }
+  .cell h4 { margin: 0; font-size: 10px; letter-spacing: 0.2em; font-weight: 500; text-transform: uppercase; }
+  .post { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; font-size: 12.5px; line-height: 1.35; color: var(--ink); }
+  .post i { font-style: normal; font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose-deep); }
+  .tags { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .cadence { border-top: 1px solid var(--cal-line); padding-top: 12px; text-align: center; font-size: 12.5px; color: var(--ink-muted); }
+
+  /* work samples */
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: start; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .card { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .media { position: relative; width: 100%; max-width: 100%; aspect-ratio: 9 / 16; background: #000; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slot { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding: 18px; text-align: center;
+    background: linear-gradient(160deg, #2a2024, #18121a); color: var(--muted); font-size: 12px; line-height: 1.45; }
+  .slot b { font-family: var(--serif); font-weight: 400; font-size: 46px; color: var(--rose); line-height: 1; }
+  .slot code { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--paper); background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 3px; }
+  .kind { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); }
+  .card h3 { font-size: 17px; line-height: 1.2; }
+  .card p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+  .linkcard { border: 1px solid var(--line); border-radius: 4px; aspect-ratio: 9 / 16; max-width: 100%; padding: 22px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .linkcard a { display: flex; flex-direction: column; gap: 3px; text-decoration: none; }
+  .linkcard a span { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+  .linkcard a strong { font-family: var(--serif); font-weight: 400; font-size: 18px; color: var(--paper); text-decoration: underline; text-decoration-color: var(--rose); text-underline-offset: 3px; overflow-wrap: anywhere; }
+
+  /* sources */
+  .sources { margin: 0; padding-left: 20px; columns: 2; column-gap: 40px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+  .sources li { break-inside: avoid; padding-bottom: 10px; }
+  .sources li::marker { color: var(--rose); }
+  @media (max-width: 700px) { .sources { columns: 1; } }
+  .close { text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; border-top: 1px solid var(--line); padding-top: 22px; }
+  .close h3 { font-size: clamp(24px, 3vw, 32px); }
+  .close h3 em { color: var(--rose); }
+  .close p { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); user-select: all; }
+
+  .stats.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 700px) { .stats.three { grid-template-columns: minmax(0, 1fr); } .stats.three .stat { border-left: 0 !important; } .stats.three .stat + .stat { border-top: 1px solid var(--line); } }
+  .views { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 42px); line-height: 1; color: var(--rose); font-variant-numeric: tabular-nums; }
+  .card p.cap { color: var(--paper); font-style: italic; font-family: var(--serif); font-size: 14px; }
+  .swipe { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+  .swipe::-webkit-scrollbar { display: none; }
+  .swipe img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; }
+  .sw-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(17,13,15,0.55); color: #f7f0ed; font-size: 18px; line-height: 1; cursor: pointer; }
+  .sw-btn.prev { left: 8px; } .sw-btn.next { right: 8px; }
+  .sw-count { position: absolute; bottom: 8px; right: 10px; font-size: 10px; letter-spacing: 0.12em; color: #f7f0ed; background: rgba(17,13,15,0.55); padding: 2px 7px; border-radius: 10px; font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { .swipe { scroll-behavior: auto; } }
+  .sgrid.two { grid-template-columns: repeat(2, minmax(0, 340px)); justify-content: center; gap: 28px; }
+  @media (max-width: 640px) { .sgrid.two { grid-template-columns: minmax(0, 340px); } }
+  .month { display: grid; grid-template-columns: repeat(7, minmax(112px, 1fr)); min-width: 790px; border-right: 1px solid var(--cal-line); border-bottom: 1px solid var(--cal-line); }
+  .mhead { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); padding: 0 8px 8px; border-bottom: 1px solid var(--cal-line); }
+  .mcell { border-top: 1px solid var(--cal-line); border-left: 1px solid var(--cal-line); padding: 8px 8px 12px; display: flex; flex-direction: column; gap: 8px; min-height: 110px; min-width: 0; }
+  .mcell.empty { background: transparent; }
+  .mcell.holiday { background: var(--tint); }
+  .mday { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+  .mday b { font-family: var(--serif); font-weight: 400; font-size: 16px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .mday span { font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-deep); text-align: right; }
+  .post.off { color: var(--ink-muted); font-style: italic; }
+  /* idea cards */
+  .igrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 28px; }
+  @media (max-width: 900px) { .igrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .igrid { grid-template-columns: minmax(0, 1fr); } }
+  .icard { border-top: 1px solid var(--line); padding: 16px 0 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .icard h3 { font-size: 19px; line-height: 1.25; }
+  .icard p { color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip.soft { color: var(--muted); border-color: var(--line); }
+  .plat { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+  /* compare */
+  .versus { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; border-block: 1px solid var(--line); }
+  .versus > div { padding: 26px 20px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .versus > div + div { border-left: 1px solid var(--line); }
+  .versus strong { font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 9vw, 110px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .versus .win strong { color: var(--rose); }
+  .versus span { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+  .bars { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 110px minmax(0, 1fr) 52px; gap: 12px; align-items: center; font-size: 12px; color: var(--muted); }
+  .bar-row b { font-weight: 400; color: var(--paper); text-align: right; font-variant-numeric: tabular-nums; }
+  .track { height: 12px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+  .fill { height: 100%; background: var(--muted); opacity: 0.55; }
+  .fill.win { background: var(--rose); opacity: 1; }
+  .note { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.5; }
+  /* quote */
+  .pull { font-family: var(--serif); font-style: italic; font-size: clamp(22px, 3vw, 32px); line-height: 1.3; text-align: center; max-width: 30ch; margin: 0 auto; text-wrap: balance; }
+  .pull em { color: var(--rose); }
+  /* samples */
+  .sgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 0.9fr); gap: 16px; align-items: start; }
+  @media (max-width: 1000px) { .sgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .sgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .media.square { aspect-ratio: 4 / 5; }
+  .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<div class="deck">
+  <div class="bar"><b>OLIVIA WEST</b><span>Content strategy for Vivrelle · scroll down</span></div>
+
+  <section class="slide cover" id="page-1" aria-label="Cover">
+    <div class="top"><span>Prepared for Vivrelle</span><b>OLIVIA WEST</b><span></span></div>
+    <div class="mid">
+      <div class="eyebrow">Content strategy for Vivrelle social</div>
+      <h1>Luxury, <em>on rotation.</em></h1>
+      <p class="lede">Where Vivrelle is today, sample pillar ideas to brainstorm content, the research on why they’ll hit and sample pieces.</p>
+    </div>
+    <div class="foot">
+      <div>Olivia West<span class="dot">·</span>Social Media<span class="dot">·</span>November 2026</div>
+      <div>oliviawest543@gmail.com<span class="dot">·</span>TikTok @oliviawest111</div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-2" aria-label="The research">
+    <div class="top"><span>Vivrelle today</span><b>OLIVIA WEST</b><span>02</span></div>
+    <div class="head"><div class="eyebrow">Vivrelle today</div><h2>Where Vivrelle <em>is today.</em></h2></div>
+    <div class="stats">
+      <div class="stat"><strong>322K</strong><span>Instagram followers</span></div>
+      <div class="stat"><strong>108.6K</strong><span>TikTok followers</span></div>
+      <div class="stat"><strong>3.3M</strong><span>TikTok likes</span></div>
+      <div class="stat"><strong class="acc">~3×</strong><span>Bigger audience on IG than TikTok</span></div>
+    </div>
+    <div class="asof">@vivrelle, as of November 6, 2026</div>
+    <div class="label" style="text-align:center">What’s working: Vivrelle’s most popular TikToks</div>
+    <div class="cols c5">
+      <div class="col"><strong class="views">4.4M</strong><h3>Pop-culture styling</h3><div class="rule"></div>
+        <p>A creator on green screen styling a character or celebrity: “How we’d style Lily Bloom” (4.4M), F1 Miami (2M), the Olsen twins’ bag collection (1.6M), Mean Girls, Carrie Bradshaw, Aspen style.</p></div>
+      <div class="col"><strong class="views">3.3M</strong><h3>Relatable POVs and skits</h3><div class="rule"></div>
+        <p>“POV: one intern is a New Yorker and the other is a NEW Yorker” (3.3M, now a 10-part playlist), Anna Wintour steps down (1.4M), modern-day Carrie Bradshaw (1.1M), how members work out (999.5K).</p></div>
+      <div class="col"><strong class="views">2.7M</strong><h3>Bag stories and outfits</h3><div class="rule"></div>
+        <p>“When the outfits are chef’s kiss” (2.7M), “and then Dior actually gifted her this bag” as a photo carousel (2.3M), Karl-Anthony Towns sneaking Jordyn’s lucky bag into a Knicks game (1.1M).</p></div>
+      <div class="col"><strong class="views">1.9M</strong><h3>The showroom and members</h3><div class="rule"></div>
+        <p>A creator in the showroom (1.9M), a member trying on bags (913.2K), “Any bag that’s on your wish list?” (688.9K), Member Picks (46 posts).</p></div>
+      <div class="col"><strong class="views">787.7K</strong><h3>Value hooks</h3><div class="rule"></div>
+        <p>“Want bags for $39/month? Keep watching!” (787.7K). The pinned questions explainer sits at 94K.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-3" aria-label="Content pillars">
+    <div class="top"><span>Sample pillar ideas</span><b>OLIVIA WEST</b><span>03</span></div>
+    <div class="head"><div class="eyebrow">Sample pillar ideas</div><h2>Sample pillar <em>ideas.</em></h2>
+      <p class="lede">A starting point to brainstorm content ideas together, built around what Vivrelle already does well.</p></div>
+    <div class="cols c4">
+      <div class="col"><div class="num">01</div><h3>Styling Tips / Where I’d Wear It</h3><div class="rule"></div><div class="label">Job: engagement</div>
+        <p class="big">Specific occasions, and the outfit and bag for each.</p><p>Made to be saved for later and sent to a friend with the same plans.</p><div class="plat">TikTok · IG carousels</div></div>
+      <div class="col"><div class="num">02</div><h3>The Smart Girl’s Luxury</h3><div class="rule"></div><div class="label">Job: engagement</div>
+        <p class="big">Money tips that make borrowing the smart move.</p><p>Saving, cost-per-wear and buy, borrow or skip, with Vivrelle as the answer.</p><div class="plat">TikTok talking heads · IG carousels</div></div>
+      <div class="col"><div class="num">03</div><h3>For the Girls</h3><div class="rule"></div><div class="label">Job: reach</div>
+        <p class="big">The post she sends to the group chat.</p><p>NYC in-jokes, POVs, takeovers and identity carousels.</p><div class="plat">TikTok POVs · IG carousels</div></div>
+      <div class="col"><div class="num">04</div><h3>Inside Vivrelle</h3><div class="rule"></div><div class="label">Job: community building</div>
+        <p class="big">The founder, the team and the process behind the closet.</p><p>Behind-the-scenes, long-form and series content that brings people back.</p><div class="plat">TikTok series · long-form video</div></div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-4" aria-label="Sample pillar 01 · Engagement">
+    <div class="top"><span>Sample pillar ideas</span><b>OLIVIA WEST</b><span>04</span></div>
+    <div class="head"><div class="eyebrow">Sample pillar 01 · Engagement</div><h2>Styling Tips / <em>Where I’d Wear It.</em></h2>
+      <p class="lede">Every idea names a real moment, so the viewer knows exactly when she’d carry the bag.</p></div>
+    <div class="igrid">
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">Series</span></div><h3>How we’d style [character]</h3><p>A character or celebrity of the moment as a styling lesson on green screen, with bags from the closet. Vivrelle’s biggest format: “How we’d style Lily Bloom” has 4.4M views.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG carousel</span></div><h3>Thanksgiving Day, three ways</h3><p>Three guests, three looks: impressing the in-laws, keeping it chill, and impressing his super cool sister who has amazing taste (she knows ball). One look per slide, with the bag in every frame.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>Thanksgiving Eve outfit inspo</h3><p>A talking head on green screen over outfit photos for Blackout Wednesday at the hometown bar: chic but not too flashy, and the bag that survives a crowded room.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">Series</span></div><h3>Date night at niche NYC spots</h3><p>One bar or restaurant per episode, named in the caption so it shows up in search: the outfit, the bag and the vibe of the room.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG carousel</span></div><h3>A weekend in Aspen, or Palm Tree Music Festival</h3><p>Packing for the weekend: après-ski by day, the festival by night, and one bag that works for both.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip soft">Mini series</span></div><h3>The cool girl’s guide to winter fashion</h3><p>Part 1, Part 2, Part 3 on TikTok’s series format: one winter problem per episode, like the coat that hides your bag or the party bag that works with snow boots.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>New Year’s Eve, but in different places</h3><p>Same night, different rooms: the local dive bar vs a club in NYC. What you’d wear to each, and which bag makes it to midnight.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-5" aria-label="Sample pillar 02 · Engagement">
+    <div class="top"><span>Sample pillar ideas</span><b>OLIVIA WEST</b><span>05</span></div>
+    <div class="head"><div class="eyebrow">Sample pillar 02 · Engagement</div><h2>The Smart Girl’s <em>Luxury.</em></h2>
+      <p class="lede">Money content Gen Z already saves and searches for, with borrowing as the smart move.</p></div>
+    <div class="igrid">
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG carousel</span></div><h3>5 ways I’m saving money during the holidays</h3><p>A chatty talking head and a saveable carousel. Number five: borrowing the party bag instead of buying it.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>Things I’m no longer buying as a recovering overconsumer</h3><p>De-influencing told straight to camera: the “it bag” I’d wear twice a year makes the list, and borrowing is what replaced it.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>What I’d buy, borrow or skip</h3><p>Three pieces, a verdict for each, with the price on screen. People argue in the comments, which is the point.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">IG carousel</span></div><h3>5 things to ask yourself before an impulse purchase</h3><p>A checklist carousel people save. The last slide: “Can I borrow it first?”</p></div>
+      <div class="icard"><div class="chips"><span class="chip">IG carousel</span><span class="chip">TikTok</span></div><h3>The cost-per-wear rule every fashion girl should know</h3><p>Price ÷ times worn, worked out on screen with green screen for a bag you’d only wear a few times a year.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-6" aria-label="Sample pillar 03 · Reach">
+    <div class="top"><span>Sample pillar ideas</span><b>OLIVIA WEST</b><span>06</span></div>
+    <div class="head"><div class="eyebrow">Sample pillar 03 · Reach</div><h2>For <em>the Girls.</em></h2>
+      <p class="lede">Funny, relatable content made to be sent, so it reaches girls who don’t follow Vivrelle yet. Every punchline ends on the bag.</p></div>
+    <div class="igrid">
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG carousel</span></div><h3>Hot takes: Fashion Hills I Will Die On</h3><p>One bold opinion per slide, like “Being well-dressed has nothing to do with how much you spend” and “You can love fashion and still be an outfit repeater.” It ends by asking for your most controversial fashion take in the comments. See my sample.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>POV: the topic is the NYC housing market</h3><p>A text-on-screen POV over a group dinner: everyone goes quiet, and the punchline lands on the one thing in her life that rotates more often than her lease.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>Niche NYC things, to trending audio</h3><p>Quick cuts of hyper-specific NYC moments, like the bodega cat or the 6 train in heels, ending on the bag.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG carousel</span></div><h3>If bags were NYC neighborhoods</h3><p>One bag per neighborhood: the West Village, SoHo, the Upper East Side, Williamsburg, the Lower East Side. Swipe to find yours, then fight about it in the comments.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG Stories</span><span class="chip soft">Mini series</span></div><h3>Influencer takeovers</h3><p>A different creator runs the account for a day, with people like Halley Kate, Bran Flakes, Acquired Style and Victoria Paris. Each one picks her bags at the showroom and shares it with her own audience too.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>POV: I’m getting robbed but our holiday launch just dropped</h3><p>A text-on-screen POV: mid-robbery, she’s still scrolling the new holiday drop, then shows the bags that just landed in the closet.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>Intern bars, a funny take</h3><p>The NYC intern bar starter pack: what every intern carries, and what she should be carrying.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip soft">Mini series</span></div><h3>How to: Beating the winter uglies</h3><p>The first episode of a “How to” guide series: the coat, the lip and the bag that make you feel put together when it’s dark at 4:30.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">IG carousel</span></div><h3>A hyper-niche NYC wish list</h3><p>A rent-free apartment, a seat on the L train and the one thing on the list she can actually get: the bag.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>The smart girl’s guide to surviving Black Friday</h3><p>Rules for not overspending, told as a funny survival guide, ending on borrowing instead of buying.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-7" aria-label="Sample pillar 04 · Community building">
+    <div class="top"><span>Sample pillar ideas</span><b>OLIVIA WEST</b><span>07</span></div>
+    <div class="head"><div class="eyebrow">Sample pillar 04 · Community building</div><h2>Inside <em>Vivrelle.</em></h2>
+      <p class="lede">Behind the scenes with the founder, the team and the process, in long-form and series content that gives people a reason to come back.</p></div>
+    <div class="igrid">
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG Reel</span><span class="chip soft">Mini series</span></div><h3>What Would Blake Do?</h3><p>Rapid-fire questions for founder Blake, one theme per episode: fashion (what would you wear meeting your boyfriend’s parents for the first time?), work (an iced coffee to an interview?), pop culture (swap closets with one celebrity), relationships (would you tell your friend you hated her boyfriend?) and controversial takes (leaving a party without saying goodbye).</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>A day in the life at the NYC office</h3><p>A timestamped day: morning arrivals, member pickups and the bag everyone is waiting on.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">IG Reel</span></div><h3>How we prep a bag to ship</h3><p>Satisfying, sound-on packing: inspecting, cleaning and boxing a bag for its next member. It answers “is it clean?” before anyone asks.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>What goes into selecting the bags</h3><p>The team on what earns a bag a spot in the closet, told straight to camera.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span></div><h3>The team’s reaction to a new bag</h3><p>Film the group the moment a new bag comes out of the box.</p></div>
+      <div class="icard"><div class="chips"><span class="chip">TikTok</span><span class="chip">Long form</span></div><h3>The founder story</h3><p>How Blake started Vivrelle in 2018, told in a longer sit-down video and cut into short clips.</p></div>
+    </div>
+  </section>
+
+  <section class="slide light" id="page-8" aria-label="Sample content calendar">
+    <div class="top"><span>Sample content calendar</span><b>OLIVIA WEST</b><span>08</span></div>
+    <div class="head"><div class="eyebrow">Sample content calendar · December 2026</div><h2>December, <em>sketched out.</em></h2>
+      <p class="lede">One way the sample pillar ideas could fill a month.</p></div>
+    <div class="legend"><span class="k tt">TikTok</span><span class="k ig">Instagram</span></div>
+    <div class="cal-scroll"><div class="month">
+      <div class="mhead">Mon</div><div class="mhead">Tue</div><div class="mhead">Wed</div><div class="mhead">Thu</div><div class="mhead">Fri</div><div class="mhead">Sat</div><div class="mhead">Sun</div>
+        <div class="mcell empty"></div>
+        <div class="mcell"><div class="mday"><b>1</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>POV: I’m getting robbed but our holiday launch just dropped</div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>Smart girl</i></div>5 ways I’m saving money during the holidays</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>2</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>What Would Blake Do?, ep. 1: meeting his parents for the first time</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>3</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>The cool girl’s guide to winter fashion, part 1</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>4</b></div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>The girls</i></div>Hot takes: Fashion Hills I Will Die On</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>5</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>Date night at a niche NYC spot, ep. 1</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>6</b></div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>Smart girl</i></div>The cost-per-wear rule</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>7</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>A day in the life at the NYC office</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>8</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>Influencer takeover, ep. 1</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>9</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Smart girl</i></div>What I’d buy, borrow or skip</div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>The girls</i></div>If bags were NYC neighborhoods</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>10</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>How we’d style [character], ep. 1</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>11</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>How to: Beating the winter uglies</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>12</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>A weekend in Aspen, or Palm Tree Music Festival</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>13</b></div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>The girls</i></div>3 hyper-niche things I wish I knew before moving to NYC</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>14</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>How we prep a bag to ship</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>15</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>Niche NYC things, to trending audio</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>16</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>What Would Blake Do?, ep. 2: an iced coffee to an interview?</div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>Smart girl</i></div>5 things to ask yourself before an impulse purchase</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>17</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>The cool girl’s guide to winter fashion, part 2</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>18</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>Intern bars, a funny take</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>19</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>Date night at a niche NYC spot, ep. 2</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>20</b></div>
+          <div class="post"><div class="tags"><span class="k ig">IG</span><i>The girls</i></div>A hyper-niche NYC wish list</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>21</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Smart girl</i></div>Things I’m no longer buying as a recovering overconsumer</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>22</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>The team’s reaction to a new bag</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>23</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>How we’d style [character], ep. 2</div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>POV: the topic is the NYC housing market</div>
+        </div>
+        <div class="mcell holiday"><div class="mday"><b>24</b><span>Christmas Eve</span></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>The founder story, long form</div>
+        </div>
+        <div class="mcell holiday"><div class="mday"><b>25</b><span>Christmas Day</span></div>
+          <div class="post off">Day off</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>26</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Smart girl</i></div>What I’d buy, borrow or skip: after-Christmas sales</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>27</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>The girls</i></div>Influencer takeover, ep. 2</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>28</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>What goes into selecting the bags</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>29</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>The cool girl’s guide to winter fashion, part 3</div>
+        </div>
+        <div class="mcell"><div class="mday"><b>30</b></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Inside</i></div>What Would Blake Do?, ep. 3: leaving a party without saying goodbye</div>
+        </div>
+        <div class="mcell holiday"><div class="mday"><b>31</b><span>New Year’s Eve</span></div>
+          <div class="post"><div class="tags"><span class="k tt">TikTok</span><i>Wear it</i></div>New Year’s Eve, but in different places</div>
+        </div>
+        <div class="mcell empty"></div>
+        <div class="mcell empty"></div>
+        <div class="mcell empty"></div>
+    </div></div>
+    <p class="cadence">Tags show each post’s pillar: Wear it, Smart girl, The girls, Inside. Recurring series run as episodes through the month.</p>
+  </section>
+
+  <section class="slide" id="page-9" aria-label="The research">
+    <div class="top"><span>The research</span><b>OLIVIA WEST</b><span>09</span></div>
+    <div class="head"><div class="eyebrow">The research</div><h2>Why I think <em>these will hit.</em></h2>
+      <p class="lede">What the research says about value-based content, TikTok and Instagram.</p></div>
+    <div class="data">
+      <div><strong>66%</strong><p>of social users say edutainment, content that educates and entertains, is the most engaging kind of brand content.</p>
+        <div class="label">Backs up</div><p class="so">Styling tips and the Smart Girl’s Luxury.</p><small>Sprout Social Content Strategy Report, 2024</small></div>
+      <div><strong>~80%</strong><p>of resale shoppers name affordability as a top reason they buy secondhand, and 45% of the handbags Gen Z resale shoppers own are secondhand.</p>
+        <div class="label">Backs up</div><p class="so">Money tips that make borrowing the smart move.</p><small>BCG × Vestiaire Collective, Oct 2025</small></div>
+      <div><strong>~140K</strong><p>average views for TikToks that open with a hot take, a bold, opinionated first sentence, against about 7K for story-style hooks.</p>
+        <div class="label">Backs up</div><p class="so">Hot takes, and “What Would Blake Do?” controversial takes.</p><small>The Content Labs, 3,997 TikToks and Reels, Jun 2025–Apr 2026</small></div>
+      <div><strong>63.8%</strong><p>more watch time, and 43.2% more reach, for TikToks over one minute than for 30–60 second videos.</p>
+        <div class="label">Backs up</div><p class="so">Longer, chatty Where I’d Wear It stories.</p><small>Buffer, 1.1M TikToks, Mar 2025</small></div>
+      <div><strong>6.9%</strong><p>median engagement rate for Instagram carousels, more than double the 3.3% for Reels.</p>
+        <div class="label">Backs up</div><p class="so">Carousels like “Which bag is your personality?”</p><small>Buffer, Mar 2026</small></div>
+      <div><strong>4.4M</strong><p>views on Vivrelle’s “How we’d style Lily Bloom,” and 787.7K on “Want bags for $39/month? Keep watching!”</p>
+        <div class="label">Backs up</div><p class="so">Styling and money value already win on Vivrelle’s own account.</p><small>@vivrelle on TikTok, most popular, Nov 2026</small></div>
+    </div>
+  </section>
+
+  <section class="slide" id="page-10" aria-label="Long-form content">
+    <div class="top"><span>The research</span><b>OLIVIA WEST</b><span>10</span></div>
+    <div class="head"><div class="eyebrow">The research · long-form</div><h2>What Vogue Business found <em>on long-form.</em></h2>
+      <p class="lede">Vogue Business reports that brands are shifting back to long-form video to build loyalty with young audiences.</p></div>
+    <p class="pull">Viewership multiplied by duration is <em>what really matters.</em></p>
+    <div class="cols c3">
+      <div class="col"><div class="num">01</div><h3>Short-form audiences aren’t as loyal</h3><div class="rule"></div><p>A quick view doesn’t turn into a relationship. Time spent watching does.</p></div>
+      <div class="col"><div class="num">02</div><h3>Depth of community drives conversion</h3><div class="rule"></div><p>And real influence. The audiences that stay longest are the ones that buy.</p></div>
+      <div class="col"><div class="num">03</div><h3>The platforms are going long</h3><div class="rule"></div><p>Instagram just started testing videos up to 90 minutes, linked from Reels, in October 2026.</p></div>
+    </div>
+    <div class="stats three">
+      <div class="stat"><strong class="acc">88%</strong><span>of Gen Z and Millennials use YouTube to discover new products</span></div>
+      <div class="stat"><strong>60%</strong><span>lift in Gen Z top-of-mind awareness from Coach’s “Dear Haley” creator takeover</span></div>
+      <div class="stat"><strong>15M</strong><span>organic engagements from Coach’s long-form “Explore Your Story”</span></div>
+    </div>
+    <div class="asof">Vogue Business via YPulse, May 2026 · t3n, Oct 2026</div>
+  </section>
+
+  <section class="slide" id="page-11" aria-label="Sample pieces">
+    <div class="top"><span>Sample pieces</span><b>OLIVIA WEST</b><span>11</span></div>
+    <div class="head"><div class="eyebrow">Sample pieces · For the Girls</div><h2>Sample Instagram <em>carousels.</em></h2>
+      <p class="lede">Designed in Canva and edited by me.</p></div>
+    <div class="sgrid two">
+      <article class="card">
+        <div class="media square"><video id="s-1" src="sample-1.mp4" poster="sample-1.jpg" data-file="sample-1.mp4" autoplay muted loop playsinline controls preload="metadata"></video></div>
+        <div class="kind">Instagram carousel · For the Girls</div><h3>Fashion Hills I Will Die On</h3><p class="cap">“Drop your most controversial fashion take in the comments. We promise not to judge. (Probably.)”</p>
+      </article>
+      <article class="card">
+        <div class="media square"><div class="swipe" id="s-2" tabindex="0" aria-label="Carousel, 5 slides"><img src="sample-2-1.jpg" alt="3 hyper-niche things I wish I knew before moving to NYC, slide 1 of 5" data-file="sample-2-1.jpg" loading="lazy"><img src="sample-2-2.jpg" alt="3 hyper-niche things I wish I knew before moving to NYC, slide 2 of 5" data-file="sample-2-2.jpg" loading="lazy"><img src="sample-2-3.jpg" alt="3 hyper-niche things I wish I knew before moving to NYC, slide 3 of 5" data-file="sample-2-3.jpg" loading="lazy"><img src="sample-2-4.jpg" alt="3 hyper-niche things I wish I knew before moving to NYC, slide 4 of 5" data-file="sample-2-4.jpg" loading="lazy"><img src="sample-2-5.jpg" alt="3 hyper-niche things I wish I knew before moving to NYC, slide 5 of 5" data-file="sample-2-5.jpg" loading="lazy"></div><button class="sw-btn prev" type="button" aria-label="Previous slide">‹</button><button class="sw-btn next" type="button" aria-label="Next slide">›</button><span class="sw-count">1 / 5</span></div>
+        <div class="kind">Instagram carousel · For the Girls</div><h3>3 Hyper-Niche Things I Wish I Knew Before Moving to NYC</h3><p>Five slides. Swipe or use the arrows.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="slide" id="page-12" aria-label="Sources">
+    <div class="top"><span>Sources</span><b>OLIVIA WEST</b><span>12</span></div>
+    <div class="head"><div class="eyebrow">Sources</div><h2>Where the <em>numbers come from.</em></h2></div>
+    <ol class="sources">
+      <li>@vivrelle on <a href="https://www.instagram.com/vivrelle/">Instagram</a> and <a href="https://www.tiktok.com/@vivrelle">TikTok</a>: followers, likes, highlights, playlists and recent view counts, viewed November 4, 2026.</li>
+      <li><a href="https://www.cbinsights.com/company/vivrelle/alternatives-competitors">CB Insights, Vivrelle company profile</a> (founded in 2018).</li>
+      <li><a href="https://www.bcg.com/press/9october2025-new-report-from-bcg-and-vestiaire-collective-reveals-global-trends-reshaping-the-resale-market">BCG × Vestiaire Collective, “Resale’s Next Chapter”</a>, October 2025.</li>
+      <li><a href="https://sproutsocial.com/insights/edutainment-social-media/">Sprout Social, The Social Media Content Strategy Report</a>, 2024.</li>
+      <li><a href="https://www.vogue.com/article/the-return-to-long-form-why-youtube-is-winning-back-brands">Vogue Business, on brands returning to long-form YouTube video</a>, via <a href="https://www.ypulse.com/newsfeed/2026/05/14/brands-are-leaning-into-long-form-videos-again-to-attract-gen-z-shoppers/">YPulse</a>, May 2026.</li>
+      <li><a href="https://buffer.com/resources/data-best-content-format-social-media/">Buffer, best content format on social platforms</a>, March 2026.</li>
+      <li><a href="https://buffer.com/resources/longer-tiktoks-get-more-views-data/">Buffer, longer TikToks get more views</a>, March 2025.</li>
+      <li><a href="https://thecontentlabs.app/blog/what-goes-viral-in-2026-data-study">The Content Labs, what goes viral in 2026</a> (a content-strategy company’s own analysis), 2026.</li>
+      <li><a href="https://t3n.de/news/instagram-videos-90-minuten-1770279/">t3n, Instagram tests videos up to 90 minutes</a>, October 2026.</li>
+    </ol>
+    <div class="close">
+      <h3>Thank <em>you.</em></h3>
+      <p>oliviawest543@gmail.com · TikTok @oliviawest111</p>
+    </div>
+  </section>
+</div>
+
+<script>
+  document.querySelectorAll('.swipe').forEach(function (sw) {
+    var box = sw.parentNode, n = sw.querySelectorAll('img').length, count = box.querySelector('.sw-count');
+    function idx() { return Math.round(sw.scrollLeft / sw.clientWidth); }
+    function upd() { if (count) count.textContent = (idx() + 1) + ' / ' + n; }
+    box.querySelector('.prev').addEventListener('click', function () { sw.scrollTo({ left: Math.max(0, idx() - 1) * sw.clientWidth }); });
+    box.querySelector('.next').addEventListener('click', function () { sw.scrollTo({ left: Math.min(n - 1, idx() + 1) * sw.clientWidth }); });
+    sw.addEventListener('scroll', function () { window.requestAnimationFrame(upd); });
+    sw.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); box.querySelector('.next').click(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); box.querySelector('.prev').click(); }
+    });
+  });
+</script>
+<script>
+  // Until a sample file is added, each slot shows a placeholder naming the file to add.
+  document.querySelectorAll('.media img, .media video').forEach(function (el) {
+    function showSlot() {
+      if (el.dataset.slot) return;
+      el.dataset.slot = '1';
+      var slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.innerHTML = '<b>V</b><span></span><code></code>';
+      slot.querySelector('span').textContent = el.tagName === 'VIDEO' ? 'Video goes here' : 'Canva piece goes here';
+      slot.querySelector('code').textContent = el.dataset.file;
+      el.hidden = true;
+      el.parentNode.appendChild(slot);
+    }
+    el.addEventListener('error', showSlot);
+    if (el.tagName === 'IMG' && el.complete && el.naturalWidth === 0) showSlot();
+    if (el.tagName === 'VIDEO' && el.error) showSlot();
+    setTimeout(function () {
+      if (el.tagName === 'IMG' ? (el.complete && el.naturalWidth === 0) : (el.networkState === 3 || el.error)) showSlot();
+    }, 2500);
+  });
+</script>
+
+</body>
+</html>
